@@ -22,3 +22,10 @@ In order to organize our search and read of the documents we have added a folder
 
 ### Meeting 30/10/2019
 [Slide about progress and next sprint](https://docs.google.com/presentation/d/1TF-R83bfQwIfP4yjjg3j5dNAj4_xVH5JBpKgPbtTnAw/edit?usp=sharing)
+
+
+## Meeting 13/11/2019
+[Slide about progress and next sprint](https://docs.google.com/presentation/d/1iTj7UDr42ZixHeJ2uBt1HXY3HtuGePntUOUttiBkKn8/edit?usp=sharing)
+
+### GNS3 API
+We use the GNS3 API to create and connect dynamically virtual PCs. A first example is available with **simple_remote.py** in the **src** folder. You need to open the simpleRemote project in GNS3 then if you run the script you can create VPCs and start a capture. The capture can be found in the **capture** folder of the project.
