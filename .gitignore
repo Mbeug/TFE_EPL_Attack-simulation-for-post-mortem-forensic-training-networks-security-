@@ -1,5 +1,8 @@
 *.tmp
 
+# Packet capture
+*.pcap
+
 # Word temporary
 ~$*.doc*
 
