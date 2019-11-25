@@ -1,5 +1,9 @@
 *.tmp
 
+# GNS3
+
+GNS3/projects/simpleRemote/project-files/dynamips
+
 # Packet capture
 *.pcap
 
