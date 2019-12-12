@@ -27,3 +27,7 @@ Backup of *.doc*
 
 # LibreOffice locks
 .~lock.*#
+
+#pycharm
+.idea/*
+__pycache__

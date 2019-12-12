@@ -1,10 +1,17 @@
+import configparser
+
 import requests
 import os
 
-gns3_user = 'admin'
-gns3_password = 'TSRq4lxcZ2FaM9z1Otlu9jLW0wdTyyKzAJc9eaocSLlsIQAxMVH4bAEVN2mFdB4o'
-gns3_host = 'localhost'
-gns3_port = '3080'
+home_dir = os.path.expanduser("~")
+config_server = configparser.ConfigParser()
+config_server.read_file(open(home_dir+"/.config/GNS3/2.2/gns3_server.conf"))
+
+section= "Server"
+gns3_user = config_server.get(section,"user")
+gns3_password = config_server.get(section,"password")
+gns3_host = config_server.get(section,"host")
+gns3_port = config_server.get(section,"port")
 
 gns3_url = 'http://'+gns3_user+':'+gns3_password+'@'+gns3_host+':'+gns3_port+'/v2'
 
@@ -14,7 +21,7 @@ def gns3_request(endpoint):
 def gns3_req_param(endpoint, payload):
     return requests.post(gns3_url+endpoint, json = payload)
 
-# print(response.json()['version']))
+#print(response.json()['version']))
 
 print('List of projects:')
 
@@ -22,7 +29,7 @@ projects = gns3_request('/projects').json()
 for id_project in range(len(projects)):
     print('[',id_project,'] ',projects[id_project]['name'],' ',projects[id_project]['project_id'])
 selected_proj = int(input('Choose your project \n'))
-    
+
 nb_vpcs = int(input('How many VPCS ? (max 10)\n'))
 
 print('Creating nodes...')
