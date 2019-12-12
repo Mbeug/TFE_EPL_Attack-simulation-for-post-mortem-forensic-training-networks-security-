@@ -1,4 +1,4 @@
-*.tmp
+9/***************************************************.tmp
 
 # GNS3
 
@@ -29,5 +29,5 @@ Backup of *.doc*
 .~lock.*#
 
 #pycharm
-.idea/*
-__pycache__
+src/.idea/*
+src/__pycache__
