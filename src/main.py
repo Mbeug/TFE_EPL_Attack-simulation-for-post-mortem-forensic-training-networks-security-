@@ -1,10 +1,12 @@
 import argparse
 import configparser
 import os
+import sys
 import time
 
 import tqdm
 
+from colorOutput import ColorOutput
 from newtwork_manager import NetworkManager
 from simple_topology import SimpleTopology
 
@@ -34,8 +36,14 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print("*"*10+"- Launching GNS3 program -"+"*"*10)
-    os.system("open -a virtualbox")
-    os.system("open -a gns3")
+    if sys.platform == "darwin":
+        print(ColorOutput.INFO_TAG + "You are on the OSX version !")
+        os.system("open -a virtualbox")
+        os.system("open -a gns3")
+    else :
+        print(ColorOutput.INFO_TAG+"You are in the Linux version !")
+        os.system("/usr/bin/gns3")
+
     # put ping for the check co
     for i in tqdm.tqdm(range(60)):
         time.sleep(0.1)
@@ -67,9 +75,14 @@ if __name__ == "__main__":
     while exit_key != 'q':
         exit_key = input()
 
-    print("Goodbye !")
+
     if exit_key == "q":
-        os.system("osascript -e 'quit app \"GNS3\"'")
-        os.system("osascript -e 'quit app \"virtualbox\"'")
+        if sys.platform == "darwin":
+            print("Goodbye OSX!")
+            os.system("osascript -e 'quit app \"GNS3\"'")
+            os.system("osascript -e 'quit app \"virtualbox\"'")
+        else :
+            print("Goodbye Linux!")
+            os.system("killall gns3")
     pass
-    exit()
+    exit(0)

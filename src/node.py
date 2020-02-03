@@ -3,17 +3,17 @@ from newtwork_manager import NetworkManager
 
 
 class Node:
-    def __init__(self, network: NetworkManager, name, node_type, project_id,symbole, compute_id='local', console_type= 'none'):
+    def __init__(self, network: NetworkManager, name, node_type, project_id, symbol, pos='none', compute_id='local', console_type='none'):
         self.network = network
         self.name = name
         self.type = node_type
         self.compute_id = compute_id
         self.project_id = project_id
         self.console_type = console_type
-        self.symbole =symbole
-        self.payload = {"name": self.name, "node_type": self.type, "compute_id": self.compute_id, "console_type":self.console_type, "symbol":self.symbole}
+        self.symbol = symbol
+        self.payload = {"name": self.name, "node_type": self.type, "compute_id": self.compute_id, "console_type":self.console_type, "symbol":self.symbol}
         self.response = None
-        self.build()
+        self.build(pos)
         self.console = self.get_console()
         self.console_host = self.get_console_host()
         self.id = self.get_id()
@@ -21,7 +21,9 @@ class Node:
         self.status = self.get_status()
         self.position = self.get_position()
 
-    def build(self):
+    def build(self, pos='none'):
+        if pos != 'none':
+            self.set_position(pos)
         response = self.node_request(self.payload)
         if response.status_code != 200 and response.status_code != 201:
             print(ColorOutput.ERROR_TAG + ': network_manager: ' + str(response) + "\n-> " + response.text)
@@ -86,5 +88,5 @@ class Node:
 
     def set_position(self, pos):
         self.payload.update({'x': pos[0], 'y': pos[1]})
-        self.build()
+        # self.build()
         pass
