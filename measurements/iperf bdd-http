@@ -1,0 +1,26 @@
+ubuntu@ubuntu:~$ iperf -c 10.0.0.14
+------------------------------------------------------------
+Client connecting to 10.0.0.14, TCP port 5001
+TCP window size: 85.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.0.5 port 36530 connected with 10.0.0.14 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0-10.0 sec   350 MBytes   294 Mbits/sec
+ubuntu@ubuntu:~$ iperf -c 10.0.0.14 -i 1
+------------------------------------------------------------
+Client connecting to 10.0.0.14, TCP port 5001
+TCP window size: 85.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.0.5 port 36532 connected with 10.0.0.14 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 1.0 sec  37.9 MBytes   318 Mbits/sec
+[  3]  1.0- 2.0 sec  34.2 MBytes   287 Mbits/sec
+[  3]  2.0- 3.0 sec  32.1 MBytes   269 Mbits/sec
+[  3]  3.0- 4.0 sec  34.1 MBytes   286 Mbits/sec
+[  3]  4.0- 5.0 sec  33.4 MBytes   280 Mbits/sec
+[  3]  5.0- 6.0 sec  31.6 MBytes   265 Mbits/sec
+[  3]  6.0- 7.0 sec  42.1 MBytes   353 Mbits/sec
+[  3]  7.0- 8.0 sec  41.0 MBytes   344 Mbits/sec
+[  3]  8.0- 9.0 sec  39.9 MBytes   334 Mbits/sec
+[  3]  9.0-10.0 sec  48.9 MBytes   410 Mbits/sec
+[  3]  0.0-10.0 sec   375 MBytes   315 Mbits/sec
