@@ -4,8 +4,8 @@
 
 GNS3/projects/simpleRemote/project-files/dynamips
 
-# Packet capture
-*.pcap
+# GNS3 packet capture
+GNS3/projects/simpleRemote/project-files/captures
 
 # Word temporary
 ~$*.doc*
