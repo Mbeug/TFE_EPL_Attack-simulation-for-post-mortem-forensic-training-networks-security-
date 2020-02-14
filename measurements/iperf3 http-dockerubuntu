@@ -1,0 +1,31 @@
+ubuntu@ubuntu:~$ iperf3 -c 10.0.0.94
+Connecting to host 10.0.0.94, port 5201
+[  4] local 10.0.0.14 port 49374 connected to 10.0.0.94 port 5201
+[ ID] Interval           Transfer     Bandwidth       Retr  Cwnd
+[  4]   0.00-1.00   sec  50.1 MBytes   420 Mbits/sec   66   96.2 KBytes       
+[  4]   1.00-2.00   sec  51.0 MBytes   428 Mbits/sec   49    116 KBytes       
+[  4]   2.00-3.00   sec  51.1 MBytes   429 Mbits/sec   49   90.5 KBytes       
+[  4]   3.00-4.00   sec  51.3 MBytes   431 Mbits/sec   38    120 KBytes       
+[  4]   4.00-5.00   sec  50.5 MBytes   424 Mbits/sec   71    119 KBytes       
+[  4]   5.00-6.00   sec  51.3 MBytes   430 Mbits/sec   47   70.7 KBytes       
+[  4]   6.00-7.00   sec  51.8 MBytes   435 Mbits/sec   31    113 KBytes       
+[  4]   7.00-8.00   sec  50.8 MBytes   426 Mbits/sec   72    115 KBytes       
+[  4]   8.00-9.00   sec  49.8 MBytes   418 Mbits/sec   39   83.4 KBytes       
+[  4]   9.00-10.00  sec  49.4 MBytes   414 Mbits/sec   55    100 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bandwidth       Retr
+[  4]   0.00-10.00  sec   507 MBytes   425 Mbits/sec  517             sender
+[  4]   0.00-10.00  sec   507 MBytes   425 Mbits/sec                  receiver
+
+iperf Done.
+ubuntu@ubuntu:~$ iperf3 -c 10.0.0.94 -i 10
+Connecting to host 10.0.0.94, port 5201
+[  4] local 10.0.0.14 port 49378 connected to 10.0.0.94 port 5201
+[ ID] Interval           Transfer     Bandwidth       Retr  Cwnd
+[  4]   0.00-10.00  sec   505 MBytes   424 Mbits/sec  485    117 KBytes       
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bandwidth       Retr
+[  4]   0.00-10.00  sec   505 MBytes   424 Mbits/sec  485             sender
+[  4]   0.00-10.00  sec   505 MBytes   424 Mbits/sec                  receiver
+
+iperf Done.
