@@ -5,9 +5,12 @@ import docker
 
 class DockerManager:
 
-    def __init__(self):
+    def __init__(self, selected_machine):
         # Use the default socket
-        self.client = docker.from_env()
+        if selected_machine == 'local':
+            self.client = docker.from_env()
+        elif selected_machine == 'vm':
+            self.client = docker.DockerClient(base_url = 'tcp://192.168.56.104:2375')
 
     def select_container(self):
         count = 0
@@ -41,10 +44,11 @@ class DockerManager:
         res = container.exec_run(cmd)
         return res
 
-# # Example
-# from docker_manager import DockerManager 
-# dm = DockerManager()
-# cont_name = dm.select_container()
-# dm.copy_to_docker('./python_scripts/write_file.py',cont_name)
-# res = dm.exec_to_docker(cont_name, 'python3 write_file.py new_file.txt')
-# print(res.output)
+# Example
+#from docker_manager import DockerManager
+dm = DockerManager('vm')
+cont_name = dm.select_container()
+dm.copy_to_docker('./python_scripts/write_file.py',cont_name)
+res = dm.exec_to_docker(cont_name, 'python3 write_file.py new_file.txt')
+print(res.output)
+

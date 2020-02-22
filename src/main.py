@@ -7,10 +7,10 @@ import time
 import tqdm
 
 from colorOutput import ColorOutput
-from newtwork_manager import NetworkManager
+from network_manager import NetworkManager
 from simple_topology import SimpleTopology
 
-home_dir = os.path.expanduser("~")
+home_dir = os.path.expanduser("~") #Risk to bug with win version : d'apres la doc python sur os.path ça passe
 config_server = configparser.ConfigParser()
 config_server.read_file(open(home_dir+"/.config/GNS3/2.2/gns3_server.conf"))
 
@@ -19,11 +19,6 @@ gns3_user = config_server.get(section, "user")
 gns3_password = config_server.get(section, "password")
 gns3_host = config_server.get(section, "host")
 gns3_port = config_server.get(section, "port")
-
-def spinning_cursor():
-    while True:
-        for cursor in '|/-\\':
-            yield cursor
 
 
 if __name__ == "__main__":
@@ -36,14 +31,19 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     print("*"*10+"- Launching GNS3 program -"+"*"*10)
-    if sys.platform == "darwin":
+    platform = sys.platform
+    if platform == "darwin":
         print(ColorOutput.INFO_TAG + "You are on the OSX version !")
         os.system("open -a virtualbox")
         os.system("open -a gns3")
+    elif platform == "linux" or platform == "linux2":
+        print(ColorOutput.INFO_TAG+": You are on the Linux version !")
+    elif platform == "win32":
+        print(ColorOutput.INFO_TAG+"You are in the Windows version !")
+        os.popen("gns3")
     else :
-        print(ColorOutput.INFO_TAG+"You are in the Linux version !")
-        os.system("/usr/bin/gns3")
-
+        print(ColorOutput.ERROR_TAG+": The platform isn't supported.")
+        exit(1)
     # put ping for the check co
     for i in tqdm.tqdm(range(60)):
         time.sleep(0.1)
@@ -71,18 +71,26 @@ if __name__ == "__main__":
         print("attacker manager")
         # os.system("python3 attacker_manager.py")
 
-    exit_key = input("Press 'q' to exit.\n")
+    exit_key = input("Press 'q' to exit.\n").lower()
     while exit_key != 'q':
-        exit_key = input()
+        exit_key = input("You enter a wrong value: "+str(exit_key)+". Please try with 'q' or 'Q'.").lower()
 
+    kill_all_flag = input("Do you want to close all? (Y/N)").lower()
+    while kill_all_flag != 'y' and kill_all_flag != 'n':
+        kill_all_flag = input("You enter a wrong value: "+str(kill_all_flag)+" . Please try with 'y' or 'n'.").lower()
 
     if exit_key == "q":
-        if sys.platform == "darwin":
+        if platform == "darwin":
             print("Goodbye OSX!")
-            os.system("osascript -e 'quit app \"GNS3\"'")
-            os.system("osascript -e 'quit app \"virtualbox\"'")
-        else :
+            if kill_all_flag == 'y':
+                os.system("osascript -e 'quit app \"GNS3\"'")
+                os.system("osascript -e 'quit app \"virtualbox\"'")
+        elif platform == "linux" or platform == "linux2" :
             print("Goodbye Linux!")
-            os.system("killall gns3")
+            if kill_all_flag == 'y':
+                os.system("killall gns3")
+
+        elif platform == "win32":
+            print("GoodBye Windows!")
     pass
     exit(0)

@@ -26,21 +26,29 @@ class NetworkManager:
         self.list_machines = self.get_all_machines()
         self.list_gns3vm = self.get_all_gns3vm()
         self.list_nodes = self.get_all_nodes()
-        self.selected_machines = self.set_current_machine()
+        self.selected_machine = self.set_current_machine()
+
     def gns3_request(self, endpoint):
         return requests.get(gns3_url+endpoint, auth=(gns3_user, gns3_password))
 
     def gns3_req_param(self, endpoint, payload):
         return requests.post(gns3_url+endpoint, json=payload, auth=(gns3_user, gns3_password))
 
+    def gns3_put_param(self,endpoint,payload):
+        return requests.put(gns3_url+endpoint, json=payload, auth=(gns3_user, gns3_password))
+
     def get_all_project(self):
         return self.gns3_request('/projects').json()
 
     def get_all_gns3vm(self):
-        return self.gns3_request('/gns3vm/engines').json()
+        response = self.gns3_request('/gns3vm/engines').json()
+        vms = list(map(lambda tmp: {'compute_id':tmp['engine_id'],'name':tmp['name']}, response))
+        return vms
 
     def get_all_machines(self):
-        return self.gns3_request('/computes').json()
+        response = self.gns3_request('/computes').json()
+        pcs = list(map(lambda tmp: {'compute_id': tmp['compute_id'], 'name': tmp['name']}, response))
+        return pcs
 
     def get_one_machine(self, compute_id):
         res = {}
@@ -50,14 +58,23 @@ class NetworkManager:
         return res
 
     def get_all_nodes(self):
-        return self.gns3_request('/projects/' + self.selected_project['project_id'] + '/nodes')
+        response = self.gns3_request('/projects/' + self.selected_project['project_id'] + '/nodes').json()
+        nodes = list(map(lambda tmp : {"node_id" : tmp['node_id'],"name" : tmp["name"]}, response))
+        return nodes
 
-    def get_one_node(self, node_id):
-        res = {}
+    def get_one_node_by_id(self, node_id):
         for node in self.list_nodes:
-            if node_id == node.node_id:
-                res = node
-        return res
+            if node["node_id"] == node_id:
+                return self.gns3_request('/projects/'+self.selected_project['project_id']+"/nodes/"+node_id).json()
+        print(ColorOutput.INFO_TAG+": Node is not in the list of nodes")
+        return None
+
+    def get_one_node_by_name(self,name):
+        for node in self.list_nodes:
+            if node["name"] == name:
+                return self.gns3_request('/projects/'+self.selected_project['project_id']+"/nodes/"+node["node_id"]).json()
+        print(ColorOutput.INFO_TAG + ": Node is not in the list of nodes")
+        return None
 
     def set_current_project(self):
         print("List of projects:")
@@ -72,8 +89,10 @@ class NetworkManager:
         for id_machine in range(len(self.list_machines)):
             print('[', id_machine, ']', self.list_machines[id_machine]['name'], ' ',
                   self.list_machines[id_machine]['compute_id'])
-            return self.list_machines[int(input("choose the machine\n"))]
-        pass
+        for id_vm in range(len(self.list_machines),len(self.list_machines)+len(self.list_gns3vm)):
+            print('[',id_vm,']',self.list_gns3vm[id_vm-len(self.list_machines)]['name'],' ',self.list_gns3vm[id_vm-len(self.list_machines)]['compute_id'])
+
+        return self.list_machines[int(input("choose the machine\n"))]
 
     def start(self):
         self.gns3_req_param('/projects/' + self.selected_project['project_id'] + '/nodes/start', {})
