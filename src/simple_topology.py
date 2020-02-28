@@ -116,7 +116,7 @@ class SimpleTopology:
         for i in range(0,len(response)):
             if response[i]['name'].find("BIRD") != -1:
                 self.router = response[i]
-        response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/templates/' + self.router['template_id'],{'x':-350,'y':-100})
+        response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/templates/' + self.router['template_id'],{'x':350,'y':100})
         if response.status_code != 200 and response.status_code != 201 :
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
             exit(1)
@@ -137,5 +137,100 @@ class SimpleTopology:
             exit(1)
         pass
 
+    def create_template(self, template_name, x = 0, y = 0):
+            response = self.nm.gns3_request("/templates")
+            if response.status_code != 200 and response.status_code != 201 :
+                print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
+                exit(1)
+            response = response.json()
 
-st = SimpleTopology().build(1)
+            template_object = None
+            found_name = []
+            for i in range(0,len(response)):
+                if response[i]['name'].find(template_name) != -1:
+                    found_name.append(response[i]['name'])
+                    template_object = response[i]
+
+            if len(found_name) == 0:
+                print(ColorOutput.ERROR_TAG + ': No occurence of name "' + template_name + '"')
+                exit(1)
+
+            if len(found_name) > 1:
+                print(ColorOutput.ERROR_TAG + ': More than 2 occurences of name "' + template_name + '" :')
+                for name in found_name:
+                    print(name)
+                exit(1)
+
+            response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/templates/' + template_object['template_id'],{'x':x,'y':y,'compute_id':"local"}) # TODO Manage compute_id
+            if response.status_code != 200 and response.status_code != 201 :
+                print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
+                exit(1)
+            pass
+            return response.json()
+
+    def create_template_id(self, template_id, x = 0, y = 0):
+            response = self.nm.gns3_request("/templates")
+            if response.status_code != 200 and response.status_code != 201 :
+                print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
+                exit(1)
+            response = response.json()
+
+            template_object = None
+            found_name = []
+            for i in range(0,len(response)):
+                if response[i]['template_id'].find(template_id) != -1:
+                    found_name.append(response[i]['name'])
+                    template_object = response[i]
+
+            if len(found_name) == 0:
+                print(ColorOutput.ERROR_TAG + ': No occurence of id "' + template_id + '"')
+                exit(1)
+
+            if len(found_name) > 1:
+                print(ColorOutput.ERROR_TAG + ': More than 2 occurences of id "' + template_id + '" :')
+                for name in found_name:
+                    print(name)
+                exit(1)
+
+            response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/templates/' + template_object['template_id'],{'x':x,'y':y,'compute_id':"local"}) # TODO Manage compute_id
+            if response.status_code != 200 and response.status_code != 201 :
+                print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
+                exit(1)
+            pass
+            return response.json()
+    
+    def link_nodes(self, id1, id2, adpt_port1 = [0,0], adpt_port2 = [0,0]):
+        payload = {"nodes": [{"adapter_number": adpt_port1[0], "node_id": id1, "port_number": adpt_port1[1]}, {"adapter_number": adpt_port2[0], "node_id": id2, "port_number": adpt_port2[1]}]}
+        response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/links',payload)
+        if response.status_code != 200 and response.status_code != 201 :
+            print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
+            exit(1)
+        return response.json()
+
+    def simple_file_copy(self, node_id, path, text):
+        response = self.nm.gns3_req_data('/projects/' + self.nm.selected_project['project_id'] + '/nodes/' + node_id + '/files/' + path, text)
+        if response.status_code != 200 and response.status_code != 201 :
+            print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
+            exit(1)
+        return response
+    
+    def start_node(self, node_id):
+        response = self.nm.gns3_req_data('/projects/' + self.nm.selected_project['project_id'] + '/nodes/' + node_id + '/start', {})
+        if response.status_code != 200 and response.status_code != 201 :
+            print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
+            exit(1)
+        pass
+    
+    def delete_node(self, node_id):
+        response = self.nm.gns3_del_request('/projects/' + self.nm.selected_project['project_id'] + '/nodes/' + node_id)
+        if response.status_code != 200 and response.status_code != 201 and response.status_code != 204 :
+            print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
+            exit(1)
+        pass
+    
+    def delete_link(self, node_id):
+        response = self.nm.gns3_del_request('/projects/' + self.nm.selected_project['project_id'] + '/links/' + node_id)
+        if response.status_code != 200 and response.status_code != 201 and response.status_code != 204 :
+            print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
+            exit(1)
+        pass
