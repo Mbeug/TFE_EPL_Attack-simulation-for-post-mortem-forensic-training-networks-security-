@@ -37,6 +37,12 @@ class NetworkManager:
     def gns3_put_param(self,endpoint,payload):
         return requests.put(gns3_url+endpoint, json=payload, auth=(gns3_user, gns3_password))
 
+    def gns3_req_data(self, endpoint, payload):
+        return requests.post(gns3_url+endpoint, data=payload, auth=(gns3_user, gns3_password))
+
+    def gns3_del_request(self, endpoint):
+        return requests.delete(gns3_url+endpoint, auth=(gns3_user, gns3_password))
+
     def get_all_project(self):
         return self.gns3_request('/projects').json()
 
