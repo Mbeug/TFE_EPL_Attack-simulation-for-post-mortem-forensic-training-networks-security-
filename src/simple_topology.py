@@ -19,8 +19,8 @@ class SimpleTopology:
             nb_vpcs = int(input("How many VPCS?\n"))
         self.create_n_vpcs(nb_vpcs)
         # Linking
-        self.create_router()
-        self.link_lan_to_router()
+        #self.create_router()
+        #self.link_lan_to_router()
         # self.link_to_cloud()
         # Start the network
         pass
@@ -31,7 +31,7 @@ class SimpleTopology:
         if nb_add_port > 0:
             for i in range(8,8+nb_add_port):
                 switch.response['properties']['ports_mapping'].append({'name': 'Ethernet'+str(i), 'port_number': i, 'type': 'access', 'vlan': 1})
-        print(ColorOutput.DEBUG_TAG +": " + str(switch.response['properties']['ports_mapping']))
+
         switch.set_ports({'ports_mapping':switch.response['properties']['ports_mapping']})
 
 
@@ -42,7 +42,7 @@ class SimpleTopology:
             self.link_vpc_to_switch(switch, idx_vpcs, cur_vpc)
             self.list_vpcs.append(cur_vpc)
             vpc_y += 80
-        print(ColorOutput.DEBUG_TAG + ": " + str(switch.response['properties']['ports_mapping'][-1]['port_number']))
+
         self.list_switch.append(switch)
         pass
 
@@ -66,40 +66,10 @@ class SimpleTopology:
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
             exit(1)
 
-    # def link_all_switches(self, nb_vpc):
-    #     if nb_vpc == 0:
-    #         print(ColorOutput.INFO_TAG + ": no modif")
-    #     elif math.ceil(nb_vpc / 7) < 7 - (nb_vpc % 7) and nb_vpc % 7 != 0 :
-    #         print(ColorOutput.INFO_TAG + ": have enough place in the last switch")
-    #         last_switch = self.list_switch[-1]
-    #         last_switch_port = nb_vpc % 7
-    #         for idx_switch in range(0, len(self.list_switch) - 1):
-    #             self.link_switch_to_switch(last_switch, last_switch_port, self.list_switch[idx_switch], 7)
-    #             last_switch_port += 1
-    #     else:
-    #         print(ColorOutput.INFO_TAG + ": must to add switch")
-    #
-    #         new_switch_list = []
-    #         for n in range(0, len(self.list_switch) % 6 + 1):
-    #             new_switch_list.append(self.create_switch("Switch" + str(len(self.list_switch) + n + 1)))
-    #         count = 0
-    #         idx = 0
-    #         for switch in self.list_switch:
-    #             if count % 7 == 0:
-    #                 idx += 1
-    #             self.link_switch_to_switch(new_switch_list[idx], count, switch, 7)
-    #             count += 1
-    #
-    #         for new_switch in new_switch_list:
-    #             self.list_switch.append(new_switch)
-    #
-    #     pass
-
     def link_switch_to_switch(self, switch_a, port_a, switch_b, port_b):
         payload = {"nodes": [{"adapter_number": 0, "node_id": switch_a.get_id(), "port_number": port_a},
                              {"adapter_number": 0, "node_id": switch_b.get_id(), "port_number": port_b}]}
         response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/links', payload)
-
         if response.status_code != 200 and response.status_code != 201:
             print(ColorOutput.DEBUG_TAG + ": port a " + str(port_a) + " port b " + str(port_b))
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
@@ -116,7 +86,7 @@ class SimpleTopology:
         for i in range(0,len(response)):
             if response[i]['name'].find("BIRD") != -1:
                 self.router = response[i]
-        response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/templates/' + self.router['template_id'],{'x':350,'y':100})
+        response = self.nm.gns3_request_post('/projects/' + self.nm.selected_project['project_id'] + '/templates/' + self.router['template_id'], {'x':350,'y':100})
         if response.status_code != 200 and response.status_code != 201 :
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
             exit(1)
@@ -129,7 +99,7 @@ class SimpleTopology:
                 router_id = node['node_id']
         payload = {"nodes": [{"adapter_number": 1, "node_id": router_id, "port_number": 0},
                              {"adapter_number": 0, "node_id": self.list_switch[0].get_id(), "port_number": port_switch}]}
-        response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/links', payload)
+        response = self.nm.gns3_request_post('/projects/' + self.nm.selected_project['project_id'] + '/links', payload)
 
         if response.status_code != 200 and response.status_code != 201:
             print(ColorOutput.DEBUG_TAG + ": port a " + str(1) + " port b " + str(port_switch))
@@ -138,7 +108,7 @@ class SimpleTopology:
         pass
 
     def create_template(self, template_name, x = 0, y = 0):
-            response = self.nm.gns3_request("/templates")
+            response = self.nm.gns3_request_get("/templates")
             if response.status_code != 200 and response.status_code != 201 :
                 print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
                 exit(1)
@@ -169,7 +139,7 @@ class SimpleTopology:
             return response.json()
 
     def create_template_id(self, template_id, x = 0, y = 0):
-            response = self.nm.gns3_request("/templates")
+            response = self.nm.gns3_request_get("/templates")
             if response.status_code != 200 and response.status_code != 201 :
                 print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
                 exit(1)
@@ -192,44 +162,47 @@ class SimpleTopology:
                     print(name)
                 exit(1)
 
-            response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/templates/' + template_object['template_id'],{'x':x,'y':y,'compute_id':"local"}) # TODO Manage compute_id
+            response = self.nm.gns3_request_post('/projects/' + self.nm.selected_project['project_id'] + '/templates/' + template_object['template_id'],{'x':x,'y':y,'compute_id':self.nm.selected_machine['compute_id']})
+            # TODO Manage compute_id
             if response.status_code != 200 and response.status_code != 201 :
                 print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
                 exit(1)
             pass
             return response.json()
-    
+
     def link_nodes(self, id1, id2, adpt_port1 = [0,0], adpt_port2 = [0,0]):
-        payload = {"nodes": [{"adapter_number": adpt_port1[0], "node_id": id1, "port_number": adpt_port1[1]}, {"adapter_number": adpt_port2[0], "node_id": id2, "port_number": adpt_port2[1]}]}
-        response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/links',payload)
+        payload = {"nodes": [{"adapter_number": adpt_port1[0], "node_id": id1, "port_number": adpt_port1[1]},
+                             {"adapter_number": adpt_port2[0], "node_id": id2, "port_number": adpt_port2[1]}]}
+
+        response = self.nm.gns3_request_post('/projects/' + self.nm.selected_project['project_id'] + '/links',payload)
         if response.status_code != 200 and response.status_code != 201 :
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
             exit(1)
         return response.json()
 
     def simple_file_copy(self, node_id, path, text):
-        response = self.nm.gns3_req_data('/projects/' + self.nm.selected_project['project_id'] + '/nodes/' + node_id + '/files/' + path, text)
+        response = self.nm.gns3_request_data('/projects/' + self.nm.selected_project['project_id'] + '/nodes/' + node_id + '/files/' + path, text)
         if response.status_code != 200 and response.status_code != 201 :
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
             exit(1)
         return response
-    
+
     def start_node(self, node_id):
-        response = self.nm.gns3_req_data('/projects/' + self.nm.selected_project['project_id'] + '/nodes/' + node_id + '/start', {})
+        response = self.nm.gns3_request_data('/projects/' + self.nm.selected_project['project_id'] + '/nodes/' + node_id + '/start', {})
         if response.status_code != 200 and response.status_code != 201 :
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
             exit(1)
         pass
-    
+
     def delete_node(self, node_id):
-        response = self.nm.gns3_del_request('/projects/' + self.nm.selected_project['project_id'] + '/nodes/' + node_id)
+        response = self.nm.gns3_request_delete('/projects/' + self.nm.selected_project['project_id'] + '/nodes/' + node_id)
         if response.status_code != 200 and response.status_code != 201 and response.status_code != 204 :
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
             exit(1)
         pass
-    
+
     def delete_link(self, node_id):
-        response = self.nm.gns3_del_request('/projects/' + self.nm.selected_project['project_id'] + '/links/' + node_id)
+        response = self.nm.gns3_request_delete('/projects/' + self.nm.selected_project['project_id'] + '/links/' + node_id)
         if response.status_code != 200 and response.status_code != 201 and response.status_code != 204 :
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
             exit(1)

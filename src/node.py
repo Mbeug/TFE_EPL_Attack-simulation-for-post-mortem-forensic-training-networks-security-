@@ -47,9 +47,9 @@ class Node:
 
     def node_request(self, payload, id='none'):
         if id != 'none':
-            response = self.network.gns3_put_param('/projects/' + self.project_id + '/nodes/' + str(id), payload)
+            response = self.network.gns3_request_put('/projects/' + self.project_id + '/nodes/' + str(id), payload)
         else :
-            response = self.network.gns3_req_param('/projects/' + self.project_id + '/nodes', payload)
+            response = self.network.gns3_request_post('/projects/' + self.project_id + '/nodes', payload)
         return response
 
     def get_console(self):
