@@ -656,9 +656,9 @@ class NetworkManager:
             for id_project in range(len(self.projects)):
                 print('[', id_project, '] ', self.projects[id_project]['name'], ' ',
                   self.projects[id_project]['project_id'])
-            self.selected_project = self.projects[int(input('Choose your project \n'))]
+            return self.projects[int(input('Choose your project \n'))]
         else:
-            self.selected_project = self.projects[id_project]
+            return self.projects[id_project]
 
     # ENDPOINT SNAPSHOT
     def get_all_snapshots(self):
@@ -724,7 +724,7 @@ class NetworkManager:
         :type response: `requests.models.Response`
         :return: nothing or error message if the status code is different of 200 or 201
         """
-        if response.status_code != 200 and response.status_code != 201 :
+        if response.status_code != 200 and response.status_code != 201 and response.status_code != 204 :
             print(ColorOutput.ERROR_TAG + ': network_manager  ' + str(response) + "\n-> " + response.text)
             exit(1)
         pass

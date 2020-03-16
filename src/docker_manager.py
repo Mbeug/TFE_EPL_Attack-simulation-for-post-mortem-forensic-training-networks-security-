@@ -50,9 +50,9 @@ class DockerManager:
 
 # Example
 #from docker_manager import DockerManager
-dm = DockerManager('vm')
-cont_name = dm.select_container()
-dm.copy_to_docker('./python_scripts/write_file.py',cont_name)
-res = dm.exec_to_docker(cont_name, 'python3 write_file.py new_file.txt')
-print(res.output)
+# dm = DockerManager('vm')
+# cont_name = dm.select_container()
+# dm.copy_to_docker('./python_scripts/write_file.py',cont_name)
+# res = dm.exec_to_docker(cont_name, 'python3 write_file.py new_file.txt')
+# print(res.output)
 

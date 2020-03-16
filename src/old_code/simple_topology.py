@@ -137,7 +137,7 @@ class SimpleTopology:
                     print(name)
                 exit(1)
 
-            response = self.nm.gns3_request_post('/projects/' + self.selected_project['project_id'] + '/templates/' + template_object['template_id'],{'x':x,'y':y,'compute_id':"local"}) # TODO Manage compute_id
+            response = self.nm.gns3_request_post('/projects/' + self.nm.selected_project['project_id'] + '/templates/' + template_object['template_id'],{'x':x,'y':y,'compute_id':"local"}) # TODO Manage compute_id
             if response.status_code != 200 and response.status_code != 201 :
                 print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
                 exit(1)
