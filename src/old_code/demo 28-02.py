@@ -1,6 +1,7 @@
 import time
 
-from simple_topology import SimpleTopology
+from colorOutput import ColorOutput
+from old_code.simple_topology import SimpleTopology
 from docker_manager import DockerManager
 
 st = SimpleTopology()

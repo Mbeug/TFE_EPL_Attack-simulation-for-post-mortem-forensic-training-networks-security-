@@ -60,7 +60,7 @@ class SimpleTopology:
 
     def link_vpc_to_switch(self, switch: Node, switch_port, vpc: Node):
         payload = {"nodes": [{"adapter_number": 0, "node_id": switch.get_id(), "port_number": switch_port}, {"adapter_number": 0, "node_id": vpc.get_id(), "port_number": 0}]}
-        response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/links', payload)
+        response = self.nm.gns3_request_post('/projects/' + self.nm.selected_project['project_id'] + '/links', payload)
 
         if response.status_code != 200 and response.status_code != 201:
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
@@ -69,7 +69,7 @@ class SimpleTopology:
     def link_switch_to_switch(self, switch_a, port_a, switch_b, port_b):
         payload = {"nodes": [{"adapter_number": 0, "node_id": switch_a.get_id(), "port_number": port_a},
                              {"adapter_number": 0, "node_id": switch_b.get_id(), "port_number": port_b}]}
-        response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/links', payload)
+        response = self.nm.gns3_request_post('/projects/' + self.nm.selected_project['project_id'] + '/links', payload)
         if response.status_code != 200 and response.status_code != 201:
             print(ColorOutput.DEBUG_TAG + ": port a " + str(port_a) + " port b " + str(port_b))
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
@@ -77,7 +77,7 @@ class SimpleTopology:
         pass
 
     def create_router(self):
-        response = self.nm.gns3_request("/templates")
+        response = self.nm.gns3_request_get("/templates")
         if response.status_code != 200 and response.status_code != 201 :
             print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
             exit(1)
@@ -94,9 +94,15 @@ class SimpleTopology:
 
     def link_lan_to_router(self):
         port_switch = self.list_switch[0].response['properties']['ports_mapping'][-1]['port_number']
+        router_id = None
         for node in self.nm.get_all_nodes():
             if node['name'].find('BIRD') != -1:
                 router_id = node['node_id']
+
+        if router_id == None:
+            print(ColorOutput.ERROR_TAG + ": Not found the bird router")
+            exit(1)
+
         payload = {"nodes": [{"adapter_number": 1, "node_id": router_id, "port_number": 0},
                              {"adapter_number": 0, "node_id": self.list_switch[0].get_id(), "port_number": port_switch}]}
         response = self.nm.gns3_request_post('/projects/' + self.nm.selected_project['project_id'] + '/links', payload)
@@ -122,23 +128,23 @@ class SimpleTopology:
                     template_object = response[i]
 
             if len(found_name) == 0:
-                print(ColorOutput.ERROR_TAG + ': No occurence of name "' + template_name + '"')
+                print(ColorOutput.ERROR_TAG + ': No occurrence of name "' + template_name + '"')
                 exit(1)
 
             if len(found_name) > 1:
-                print(ColorOutput.ERROR_TAG + ': More than 2 occurences of name "' + template_name + '" :')
+                print(ColorOutput.ERROR_TAG + ': More than 2 occurrences of name "' + template_name + '" :')
                 for name in found_name:
                     print(name)
                 exit(1)
 
-            response = self.nm.gns3_req_param('/projects/' + self.nm.selected_project['project_id'] + '/templates/' + template_object['template_id'],{'x':x,'y':y,'compute_id':"local"}) # TODO Manage compute_id
+            response = self.nm.gns3_request_post('/projects/' + self.selected_project['project_id'] + '/templates/' + template_object['template_id'],{'x':x,'y':y,'compute_id':"local"}) # TODO Manage compute_id
             if response.status_code != 200 and response.status_code != 201 :
                 print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
                 exit(1)
             pass
             return response.json()
 
-    def create_template_id(self, template_id, x = 0, y = 0):
+    def create_template_id(self, template_id, x=0, y=0):
             response = self.nm.gns3_request_get("/templates")
             if response.status_code != 200 and response.status_code != 201 :
                 print(ColorOutput.ERROR_TAG + ': simple_topology: ' + str(response) + "\n-> " + response.text)
@@ -153,11 +159,11 @@ class SimpleTopology:
                     template_object = response[i]
 
             if len(found_name) == 0:
-                print(ColorOutput.ERROR_TAG + ': No occurence of id "' + template_id + '"')
+                print(ColorOutput.ERROR_TAG + ': No occurrence of id "' + template_id + '"')
                 exit(1)
 
             if len(found_name) > 1:
-                print(ColorOutput.ERROR_TAG + ': More than 2 occurences of id "' + template_id + '" :')
+                print(ColorOutput.ERROR_TAG + ': More than 2 occurrences of id "' + template_id + '" :')
                 for name in found_name:
                     print(name)
                 exit(1)

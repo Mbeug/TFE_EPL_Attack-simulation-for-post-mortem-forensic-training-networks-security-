@@ -8,7 +8,7 @@ import tqdm
 
 from colorOutput import ColorOutput
 from network_manager import NetworkManager
-from simple_topology import SimpleTopology
+from old_code.simple_topology import SimpleTopology
 
 home_dir = os.path.expanduser("~") #Risk to bug with win version : d'apres la doc python sur os.path ça passe
 config_server = configparser.ConfigParser()

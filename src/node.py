@@ -14,12 +14,6 @@ class Node:
         self.payload = {"name": self.name, "node_type": self.type, "compute_id": self.compute_id, "console_type":self.console_type, "symbol":self.symbol}
         self.response = None
         # self.build(pos)
-        self.console = None
-        self.flag_console_updated = False
-        self.console_host = None
-        self.flag_console_host_updated = False
-        self.id = None
-        self.flag_id_updated = False
         self.properties = None
         self.flag_properties_updated = False
         self.status = None
@@ -35,12 +29,6 @@ class Node:
             print(ColorOutput.ERROR_TAG + ': network_manager: ' + str(response) + "\n-> " + response.text)
             exit(1)
         self.response = response.json()
-        self.console = self.get_console()
-        self.console_host = self.get_console_host()
-        self.console_type = self.get_console_type()
-        self.id = self.get_id()
-        self.properties = self.get_properties()
-        self.status = self.get_status()
         self.position = self.get_position()
         self.list_ports = self.get_list_ports()
         pass
