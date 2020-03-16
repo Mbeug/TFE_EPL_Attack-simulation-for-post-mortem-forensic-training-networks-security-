@@ -142,6 +142,14 @@ class NetworkManager:
     ####################################################################################################################
 
     # ENDPOINT APPLIANCE/TEMPLATE
+    def create_docker_template(self, name, image):
+        # payload = {'default_name_format': '{name}-{0}', 'usage': '', 'symbol': ':/symbols/docker_guest.svg', 'category': 'guest', 'start_command': '', 'name': 'ubuntu', 'image': 'ubuntu:latest', 'adapters': 1, 'custom_adapters': [], 'environment': '', 'console_type': 'telnet', 'console_auto_start': False, 'console_resolution': '1024x768', 'console_http_port': 80, 'console_http_path': '/', 'extra_hosts': '', 'extra_volumes': [], 'compute_id': 'local', 'template_id': 'e8912fbb-2e50-43a3-8328-9e748dec1f89', 'template_type': 'docker'}
+        response = self.gns3_request_post('/templates',payload = {'name': name, 'image': image,'compute_id': 'local', 'template_type': 'docker'})
+        if response.status_code != 200 and response.status_code != 201 :
+            print( ' template_creation: ' + str(response) + "\n-> " + response.text)
+            exit(1)
+        pass
+
     def get_all_templates(self):
         """
         Request the gns3 server a list of all templates
