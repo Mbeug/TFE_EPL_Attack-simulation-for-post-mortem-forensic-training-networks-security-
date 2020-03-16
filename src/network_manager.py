@@ -340,14 +340,18 @@ class NetworkManager:
         :param payload: the custom payload for the drawing
         :return: response from post request to the server
 
-        Payload example:: JSON
+        Payload example:
 
-        {
-            "svg": "<svg height=\"210\" width=\"500\"><line x1=\"0\" y1=\"0\" x2=\"200\" y2=\"200\" style=\"stroke:rgb(255,0,0);stroke-width:2\" /></svg>",
-            "x": 10,
-            "y": 20,
-            "z": 0
-        }
+        .. code-block :: JSON
+
+            {
+                "svg": '<svg height="210" width="500">
+                <line x1="0" y1="0" x2="200" y2="200" style="stroke:rgb(255,0,0);stroke-width:2" /></svg>',
+                "x":10,
+                "y":20,
+                "z": 0
+            }
+
         """
         response = self.gns3_request_post('/projects/' + self.selected_project['project_id'] + '/drawings', payload)
         self.check_reponse(response)
@@ -675,10 +679,14 @@ class NetworkManager:
         :type payload: dict
         :return:
 
-        An example of payload ::JSON
+        An example of payload:
+
+        .. code-block :: JSON
+
             {
                 "name": "snap1"
             }
+
         """
         response = self.gns3_request_post('/projects/' + self.selected_project['project_id'] +'/snapshots',payload)
         self.check_reponse(response)
