@@ -15,7 +15,7 @@ gns3_password = config_server.get(section, "password")
 gns3_host = config_server.get(section, "host")
 gns3_port = config_server.get(section, "port")
 gns3_url = 'http://'+gns3_user+'@'+gns3_host+':'+gns3_port+'/v2'
-print(ColorOutput.INFO_TAG+": you are connected to "+gns3_url)
+print(ColorOutput.INFO_TAG+": you are connected to "+gns3_url+"\n")
 
 
 class NetworkManager:
@@ -24,14 +24,13 @@ class NetworkManager:
     """
     selected_machine: dict
 
-    def __init__(self):
+    def __init__(self, id_project=None, id_machine = None):
         self.projects = self.get_all_project()
-        self.selected_project = self.set_current_project()
+        self.selected_project = self.set_current_project(id_project)
         self.list_machines = self.get_all_machines()
         self.list_gns3vm = self.get_all_gns3vm()
         self.list_nodes = self.get_all_nodes()
-        self.selected_machine = {}
-        self.set_current_machine()
+        self.selected_machine = self.set_current_machine(id_machine)
 
     ####################################################################################################################
     #                                              HTTP REQUEST                                                        #
@@ -143,11 +142,42 @@ class NetworkManager:
 
     # ENDPOINT APPLIANCE/TEMPLATE
     def create_docker_template(self, name, image):
-        # payload = {'default_name_format': '{name}-{0}', 'usage': '', 'symbol': ':/symbols/docker_guest.svg', 'category': 'guest', 'start_command': '', 'name': 'ubuntu', 'image': 'ubuntu:latest', 'adapters': 1, 'custom_adapters': [], 'environment': '', 'console_type': 'telnet', 'console_auto_start': False, 'console_resolution': '1024x768', 'console_http_port': 80, 'console_http_path': '/', 'extra_hosts': '', 'extra_volumes': [], 'compute_id': 'local', 'template_id': 'e8912fbb-2e50-43a3-8328-9e748dec1f89', 'template_type': 'docker'}
-        response = self.gns3_request_post('/templates',payload = {'name': name, 'image': image,'compute_id': 'local', 'template_type': 'docker'})
-        if response.status_code != 200 and response.status_code != 201 :
-            print( ' template_creation: ' + str(response) + "\n-> " + response.text)
-            exit(1)
+        """
+        Method create a docker template
+
+        :param name: is the name of docker we want
+        :param image:  is the image of docker we want
+        :type name: str
+        :type image: str
+        :return:
+
+        payload example ::
+
+            payload = { 'default_name_format': '{name}-{0}',
+                        'usage': '',
+                        'symbol': ':/symbols/docker_guest.svg',
+                        'category': 'guest',
+                        'start_command': '',
+                        'name': 'ubuntu',
+                        'image': 'ubuntu:latest',
+                        'adapters': 1,
+                        'custom_adapters': [],
+                        'environment': '',
+                        'console_type': 'telnet',
+                        'console_auto_start': False,
+                        'console_resolution': '1024x768',
+                        'console_http_port': 80,
+                        'console_http_path': '/',
+                        'extra_hosts': '',
+                        'extra_volumes': [],
+                        'compute_id': 'local',
+                        'template_id': 'e8912fbb-2e50-43a3-8328-9e748dec1f89',
+                        'template_type': 'docker'
+                        }
+
+        """
+        response = self.gns3_request_post('/templates',payload = {'name': name, 'image': image,'compute_id': self.selected_machine['compute_id'], 'template_type': 'docker'})
+        self.check_reponse(response)
         pass
 
     def get_all_templates(self):
@@ -155,7 +185,7 @@ class NetworkManager:
         Request the gns3 server a list of all templates
 
         :return: list of all templates
-        :rtype: dict
+        :rtype: array of dict
         """
         response = self.gns3_request_get("/templates")
         if response.status_code != 200 and response.status_code != 201:
@@ -247,9 +277,7 @@ class NetworkManager:
         response = self.gns3_request_post(
             '/projects/' + self.selected_project['project_id'] + '/templates/' + template_object['template_id'],
             {'x': x, 'y': y, 'compute_id': self.selected_machine['compute_id']})
-        if response.status_code != 200 and response.status_code != 201:
-            print(ColorOutput.ERROR_TAG + ': NetworkManager (L:172): ' + str(response) + "\n-> " + response.text)
-            exit(1)
+        self.check_reponse(response)
         return response.json()
 
     # ENDPOINT COMPUTE/VM
@@ -323,9 +351,9 @@ class NetworkManager:
             for id_vm in range(len(self.list_machines),len(self.list_machines)+len(self.list_gns3vm)):
                 print('[',id_vm,']',self.list_gns3vm[id_vm-len(self.list_machines)]['name'],' ',self.list_gns3vm[id_vm-len(self.list_machines)]['compute_id'])
 
-            self.selected_machine = self.list_machines[int(input("choose the machine\n"))]
+            return self.list_machines[int(input("choose the machine\n"))]
         else:
-            self.selected_machine = machine
+            return machine
         pass
 
 
@@ -417,9 +445,7 @@ class NetworkManager:
         payload = {"nodes": [{"adapter_number": adapter_port1[0], "node_id": id1, "port_number": adapter_port1[1]},
                              {"adapter_number": adapter_port2[0], "node_id": id2, "port_number": adapter_port2[1]}]}
         response = self.gns3_request_post('/projects/' + self.selected_project['project_id'] + '/links', payload)
-        if response.status_code != 200 and response.status_code != 201:
-            print(ColorOutput.ERROR_TAG + ': network_manager : ' + str(response) + "\n-> " + response.text)
-            exit(1)
+        self.check_reponse(response)
         return response.json()
 
     def delete_link(self, link_id):
@@ -442,9 +468,11 @@ class NetworkManager:
         :rtype: array of dict
 
         """
-        return self.gns3_request_get('/projects/' + self.selected_project['project_id'] + '/links').json()
+        response = self.gns3_request_get('/projects/' + self.selected_project['project_id'] + '/links')
+        self.check_reponse(response)
+        return response.json()
 
-    def get_one_links(self,link_id):
+    def get_one_link(self,link_id):
         """
         This method get one specific link in the current project
 
@@ -452,7 +480,9 @@ class NetworkManager:
         :return: the response of the get method with the specific link
         :rtype: dict
         """
-        return self.gns3_request_get('/projects/' + self.selected_project['project_id'] + '/links/'+link_id).json()
+        response = self.gns3_request_get('/projects/' + self.selected_project['project_id'] + '/links/'+link_id)
+        self.check_reponse(response)
+        return response.json()
 
     def get_pcap_link(self,link_id):
         """
@@ -461,7 +491,9 @@ class NetworkManager:
         :param link_id: Link UUID
         :return: Response from the :func:`network_manager.gns3_request_get()`
         """
-        return self.gns3_request_get('/projects/' + self.selected_project['project_id'] + '/links/'+link_id+'/pcap')
+        response = self.gns3_request_get('/projects/' + self.selected_project['project_id'] + '/links/'+link_id+'/pcap')
+        self.check_reponse(response)
+        return response
 
     def start_capture_link(self,link_id):
         """
@@ -470,7 +502,9 @@ class NetworkManager:
         :param link_id: Link UUID
         :return: Response from the :func: `network_manager.gns3_request_get()` and start the capture packets
         """
-        return self.gns3_request_get('/projects/' + self.selected_project['project_id'] + '/links/'+link_id+'/start_capture')
+        response = self.gns3_request_post('/projects/' + self.selected_project['project_id'] + '/links/'+link_id+'/start_capture',{})
+        self.check_reponse(response)
+        return response
 
     def stop_capture_link(self,link_id):
         """
@@ -479,7 +513,7 @@ class NetworkManager:
         :param link_id: Link UUID
         :return: Response from the :func:`network_manager.gns3_request_get()` and stop the capture packets
         """
-        response = self.gns3_request_get('/projects/' + self.selected_project['project_id'] + '/links/'+link_id+'/stop_capture')
+        response = self.gns3_request_post('/projects/' + self.selected_project['project_id'] + '/links/'+link_id+'/stop_capture',{})
         self.check_reponse(response)
         return response
 
@@ -520,8 +554,9 @@ class NetworkManager:
         :return: The specific node and none if the node isn't founded
         :rtype: dict
         """
-        for node in self.list_nodes:
-            if node["name"] == name:
+        list_nodes = self.get_all_nodes()
+        for node in list_nodes:
+            if name in node['name']:
                 response = self.gns3_request_get('/projects/'+self.selected_project['project_id']+"/nodes/"+node["node_id"])
                 self.check_reponse(response)
                 return response.json()
@@ -569,7 +604,7 @@ class NetworkManager:
         :param node_id: the id of the specific node
         :return: start the specific node
         """
-        response = self.gns3_request_data('/projects/' + self.selected_project['project_id'] + '/nodes/' + node_id + '/start', {})
+        response = self.gns3_request_post('/projects/' + self.selected_project['project_id'] + '/nodes/' + node_id + '/start', {})
         self.check_reponse(response)
         pass
 
@@ -580,7 +615,7 @@ class NetworkManager:
         :param node_id: the id od the specific node
         :return: stop the specific node
         """
-        response = self.gns3_request_data('/projects/'+self.selected_machine['project_id'] + '/nodes/' + node_id + '/stop', {})
+        response = self.gns3_request_post('/projects/' + self.selected_project['project_id'] + '/nodes/' + node_id + '/stop', {})
         self.check_reponse(response)
         pass
 
@@ -624,7 +659,7 @@ class NetworkManager:
         :return: the response of gns3 server
         :rtype: : `requests.models.Response`
         """
-        response = self.gns3_request_data('/projects/' + self.nm.selected_project['project_id'] + '/nodes/' + node_id + '/files/' + path, text)
+        response = self.gns3_request_data('/projects/' + self.selected_project['project_id'] + '/nodes/' + node_id + '/files/' + path, text)
         self.check_reponse(response)
         return response
 
@@ -698,6 +733,7 @@ class NetworkManager:
         """
         response = self.gns3_request_post('/projects/' + self.selected_project['project_id'] +'/snapshots',payload)
         self.check_reponse(response)
+        return response
 
     def delete_snapshot(self,snapshot_id):
         """
@@ -708,6 +744,7 @@ class NetworkManager:
         """
         response = self.gns3_request_delete('/projects/' + self.selected_project['project_id'] +'/snapshots/'+snapshot_id)
         self.check_reponse(response)
+        return response
 
     def restore_snapshot(self,snapshot_id):
         """
@@ -717,6 +754,7 @@ class NetworkManager:
         """
         response = self.gns3_request_post('/projects/' + self.selected_project['project_id'] +'/snapshots/'+ snapshot_id +'/restore',{})
         self.check_reponse(response)
+        return response
 
     # ENDPOINT OTHER (server, symbol)
     # TODO
