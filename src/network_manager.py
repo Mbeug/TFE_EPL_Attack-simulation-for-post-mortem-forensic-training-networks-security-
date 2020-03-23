@@ -176,6 +176,10 @@ class NetworkManager:
                         }
 
         """
+        for template in self.get_all_templates():
+            if template["name"] == name:
+                print(ColorOutput.INFO_TAG + ' Template "'+name+'" already exist, not created again')
+                return None
         response = self.gns3_request_post('/templates',payload = {'name': name, 'image': image,'compute_id': self.selected_machine['compute_id'], 'template_type': 'docker'})
         self.check_reponse(response)
         pass
