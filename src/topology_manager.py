@@ -20,12 +20,11 @@ class TopologyManager:
         add NAT
 
     """
-    def __init__(self):
-        self.nm = NetworkManager(0,{
-                "compute_id": "vm",
-                "name": "GNS3 VM (GNS3 VM)"
-            })
-        self.dm = DockerManager('vm')
+    def __init__(self,networkmanager=NetworkManager(0,{
+                                                        "compute_id": "vm",
+                                                        "name": "GNS3 VM (GNS3 VM)"})):
+        self.nm = networkmanager
+        self.dm = DockerManager(self.nm.selected_machine["compute_id"])
         self.max_x = 700  # That's means we have 7 columns
         #self.max_y = 10000 # That's means we have 100 rows
         self.list_pcs= []
@@ -245,4 +244,19 @@ class TopologyManager:
     def create_NAT(self):
         return  self.nm.create_template_by_name("NAT",100,100)
 
-    
+    def create_MAIL(self, personal_net_config_mail=None):
+        if personal_net_config_mail == None:
+            personal_net_config_mail = '''# Static config
+                                            auto eth0
+                                            iface eth0 inet static
+                                                address 10.0.0.16
+                                                netmask 255.255.255.0
+                                                gateway 10.0.0.1
+                                                up echo nameserver 8.8.8.8 > /etc/resolv.conf'''
+
+        mail = self.nm.create_template_by_name("thomasbeckers/mail",300,250)
+        self.nm.add_file_to_node(mail['node_id'], "/etc/network/interfaces", personal_net_config_mail)
+
+        self.nm.link_nodes(self.switch_services['node_id'], mail["node_id"],
+                           [0, self.get_switch_port(self.switch_services)], [0, 0])
+        self.list_services.append(mail)

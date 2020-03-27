@@ -1,8 +1,5 @@
-import time
-from time import sleep
 from unittest import TestCase
 
-from network_manager import NetworkManager
 from topology_manager import TopologyManager
 
 
@@ -44,6 +41,8 @@ class TestTopologyManager(TestCase):
         FTP = self.tm.get_ftp_nodes()[0]
         self.tm.ftp_config(FTP)
 
+        MAIL = self.tm.create_MAIL()
+        self.nm.start_all_nodes()
 
         flag = int(input(
             "Do you want clear(Y=1/N=0)?:"))
