@@ -182,7 +182,7 @@ class NetworkManager:
                 return None
         response = self.gns3_request_post('/templates',payload = {'name': name, 'image': image,'compute_id': self.selected_machine['compute_id'], 'template_type': 'docker'})
         self.check_reponse(response)
-        pass
+        return response.json()
 
     def get_all_templates(self):
         """
@@ -220,7 +220,14 @@ class NetworkManager:
 
         if len(found_name) == 0:
             print(ColorOutput.ERROR_TAG + ': No occurrence of name "' + template_name + '"')
-            exit(1)
+            flag = int(input("If is a docker template, do you want to add '"+template_name+"' to the project templates (Y=1/N=0)?:"))
+            while(flag != 1 and flag != 0):
+                flag = int(input("Your input isn't supported, try again:"))
+
+            if flag :
+                template_object = self.create_docker_template(template_name,template_name)
+            else :
+                exit(1)
 
         if len(found_name) > 1:
             print(ColorOutput.ERROR_TAG + ': More than 2 occurrences of name "' + template_name + '" :')
