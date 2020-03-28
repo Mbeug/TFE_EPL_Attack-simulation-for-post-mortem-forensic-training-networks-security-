@@ -20,10 +20,11 @@ class TopologyManager:
         add NAT
 
     """
-    def __init__(self,networkmanager=NetworkManager(0,{
-                                                        "compute_id": "vm",
-                                                        "name": "GNS3 VM (GNS3 VM)"})):
-        self.nm = networkmanager
+    def __init__(self,networkmanager=None):
+        if(networkmanager == None):
+            self.nm = NetworkManager()
+        else:
+            self.nm = networkmanager
         self.dm = DockerManager(self.nm.selected_machine["compute_id"])
         self.max_x = 700  # That's means we have 7 columns
         #self.max_y = 10000 # That's means we have 100 rows
@@ -145,8 +146,8 @@ class TopologyManager:
         self.nm.start_node(dns["node_id"])
         time.sleep(2)
         self.dm.exec_to_docker(dns['properties']['container_id'], "iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE")
-        self.dm.copy_to_docker("../config_files/dns/dnsmasq.conf", dns["properties"]["container_id"], "/etc/")
-        self.dm.copy_to_docker("../config_files/dns/hosts", dns["properties"]["container_id"], "/etc/")
+        self.dm.copy_to_docker("./config_files/dns/dnsmasq.conf", dns["properties"]["container_id"], "/etc/")
+        self.dm.copy_to_docker("./config_files/dns/hosts", dns["properties"]["container_id"], "/etc/")
         self.dm.exec_to_docker(dns["properties"]["container_id"], "service dnsmasq restart")
         #time.sleep(2)
         #self.nm.stop_node(dns["node_id"])
@@ -230,8 +231,8 @@ class TopologyManager:
     def ftp_config(self, ftp):
         self.nm.start_node(ftp["node_id"])
         time.sleep(2)
-        self.dm.copy_to_docker("../config_files/ftp/vsftpd.conf",ftp["properties"]["container_id"],"/etc/vsftpd.conf")
-        self.dm.copy_to_docker("../python_scripts/write_file.py",ftp["properties"]["container_id"],"/srv/ftp/write_file.py")
+        self.dm.copy_to_docker("./config_files/ftp/vsftpd.conf",ftp["properties"]["container_id"],"/etc/vsftpd.conf")
+        self.dm.copy_to_docker("./python_scripts/write_file.py",ftp["properties"]["container_id"],"/srv/ftp/write_file.py")
         self.dm.exec_to_docker(ftp["properties"]["container_id"],"chown root:root /etc/vsftpd.conf")
         self.dm.exec_to_docker(ftp["properties"]["container_id"],"service vsftpd restart")
         #time.sleep(2)
