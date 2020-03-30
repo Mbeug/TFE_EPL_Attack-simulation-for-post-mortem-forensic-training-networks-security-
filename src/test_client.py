@@ -28,6 +28,7 @@ if __name__ == "__main__":
     tm.create_n_node(2, "Alpine")
     tm.create_HTTP()
     tm.create_FTP()
+    tm.create_db()
 
     # config http
     HTTP = tm.get_http_nodes()[0]
@@ -38,6 +39,10 @@ if __name__ == "__main__":
     tm.ftp_config(FTP)
 
     MAIL = tm.create_MAIL()
+
+    db = tm.get_db_nodes()[0]
+    tm.db_config(db)
+
     nm.start_all_nodes()
 
     flag = int(input(

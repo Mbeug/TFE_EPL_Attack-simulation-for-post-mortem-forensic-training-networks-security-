@@ -177,8 +177,7 @@ class TopologyManager:
     # http must be started
     def http_config(self, HTTP):
         self.nm.start_node(HTTP['node_id'])
-        #todo
-
+        self.dm.copy_to_docker("./config_files/http/database.php", HTTP["properties"]["container_id"], '/var/www/html/')
         pass
 
     def create_FTP(self, personal_net_config_ftp=None):
@@ -254,3 +253,40 @@ class TopologyManager:
             if self.switch_lan != None:
                 self.nm.link_nodes(self.switch_services['node_id'],self.switch_lan['node_id'],
                                [0,self.get_switch_port(self.switch_services)], [0,self.get_switch_port(self.switch_lan)])
+
+    def create_db(self, personal_net_config_db=None):
+        self.check_switch_service()
+
+        if personal_net_config_db == None:
+            personal_net_config_db = '''# Static config
+                                            auto eth0
+                                            iface eth0 inet static
+                                                address 10.0.0.17
+                                                netmask 255.255.255.0
+                                                gateway 10.0.0.1
+                                                up echo nameserver 8.8.8.8 > /etc/resolv.conf'''
+
+        db = self.nm.create_template_by_name("thomasbeckers/db",self.switch_services['x']+(len(self.list_services))*100,self.switch_services['y']+200)
+        self.nm.add_file_to_node(db["node_id"],"/etc/network/interfaces",personal_net_config_db)
+
+        #linking to switch services
+        self.nm.link_nodes(self.switch_services["node_id"],db['node_id'],[0,self.get_switch_port(self.switch_services)],[0,0])
+        self.list_services.append(db)
+        return db
+
+    def get_db_nodes(self):
+        list_db = []
+        for service in self.list_services:
+            if 'db' in service['name'] :
+                list_db.append(service)
+
+        return list_db
+
+    # db must be started
+    def db_config(self, db):
+        self.nm.start_node(db['node_id'])
+        # wait mysql to start
+        time.sleep(5)
+        self.dm.copy_to_docker("./config_files/db/setup.sql", db["properties"]["container_id"])
+        r =self.dm.exec_to_docker(db["properties"]["container_id"], "/bin/sh -c 'mysql -u root < setup.sql'")
+        pass
