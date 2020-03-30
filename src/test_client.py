@@ -45,4 +45,5 @@ if __name__ == "__main__":
     while (flag != 1 and flag != 0):
         flag = int(input("Your input isn't supported, try again:"))
     if flag:
+        nm.stop_all_node()
         tm.clean()

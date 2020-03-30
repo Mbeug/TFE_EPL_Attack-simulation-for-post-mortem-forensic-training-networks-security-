@@ -1,10 +1,8 @@
-import os
 import time
 
 from colorOutput import ColorOutput
 from docker_manager import DockerManager
 from network_manager import NetworkManager
-from node import Node
 
 
 class TopologyManager:
@@ -55,19 +53,17 @@ class TopologyManager:
         if template_name == None and docker_img == None:
             print(ColorOutput.ERROR_TAG+': Please fill arg template_name or docker_name with its image')
             exit(1)
-        if self.switch_services == None:
-            self.switch_services = self.nm.create_template_by_name("Ethernet switch", 450, 100)
+
+        self.check_switch_service()
 
         if self.switch_lan == None:
-            self.switch_lan = self.nm.create_template_by_name("Ethernet switch",int(3*self.max_x/4), int(n * 100 / 2))
+            self.switch_lan = self.nm.create_template_by_name("Ethernet switch",self.switch_services['x']+300, self.switch_services['y'])
             self.nm.link_nodes(self.switch_services['node_id'],self.switch_lan['node_id'],
                                [0,self.get_switch_port(self.switch_services),self.get_switch_port(self.switch_lan)])
-        starting_y = 0
-        if len(self.list_pcs) != 0:
-            starting_y = int(self.list_pcs[-1]['y'])
+
         if template_name!= None:
             for i in range(n):
-                current_pc = self.nm.create_template_by_name(template_name,self.max_x,starting_y+((i+1)*100))
+                current_pc = self.nm.create_template_by_name(template_name,self.switch_lan['x']+200, self.switch_lan['y']+(len(self.list_pcs))*100)
                 self.nm.add_file_to_node(current_pc["node_id"], "/etc/network/interfaces", self.net_config_dhcp)
                 self.nm.link_nodes(self.switch_lan['node_id'],current_pc['node_id'],[0,self.get_switch_port(self.switch_lan)],[0,0])
                 self.list_pcs.append(current_pc)
@@ -115,10 +111,7 @@ class TopologyManager:
             self.nm.delete_node(node['node_id'])
 
     def create_DNS(self, personal_net_config_dns=None):
-        if self.switch_services == None:
-            self.switch_services = self.nm.create_template_by_name("Ethernet switch", 450, 100)
-
-
+        self.check_switch_service()
 
         if personal_net_config_dns == None:
             personal_net_config_dns =   """# Static config
@@ -154,12 +147,7 @@ class TopologyManager:
         pass
 
     def create_HTTP(self, personal_net_config_http=None):
-        if self.switch_services == None:
-            self.switch_services = self.nm.create_template_by_name("Ethernet switch", 450, 100)
-            #linking to switch_lan
-            self.nm.link_nodes(self.switch_services['node_id'],self.switch_lan['node_id'],
-                               [0,self.get_switch_port(self.switch_services)], [0,self.get_switch_port(self.switch_lan)])
-
+        self.check_switch_service()
 
         if personal_net_config_http == None:
             personal_net_config_http = '''# Static config
@@ -170,7 +158,7 @@ class TopologyManager:
                                                 gateway 10.0.0.1
                                                 up echo nameserver 8.8.8.8 > /etc/resolv.conf'''
 
-        http = self.nm.create_template_by_name("thomasbeckers/http",150,250)
+        http = self.nm.create_template_by_name("thomasbeckers/http",self.switch_services['x']+(len(self.list_services))*100,self.switch_services['y']+200)
         self.nm.add_file_to_node(http["node_id"],"/etc/network/interfaces",personal_net_config_http)
 
         #linking to switch services
@@ -194,12 +182,7 @@ class TopologyManager:
         pass
 
     def create_FTP(self, personal_net_config_ftp=None):
-        if self.list_services == None:
-            self.switch_services = self.nm.create_template_by_name("Ethernet switch", 450, 100)
-            #linking to switch_lan
-            self.nm.link_nodes(self.switch_services['node_id'],self.switch_lan['node_id'],
-                               [0,self.get_switch_port(self.switch_services)], [0,self.get_switch_port(self.switch_lan)])
-
+        self.check_switch_service()
 
         if personal_net_config_ftp == None:
             personal_net_config_ftp =    '''# Static config
@@ -210,7 +193,7 @@ class TopologyManager:
                                                 gateway 10.0.0.1
                                                 up echo nameserver 8.8.8.8 > /etc/resolv.conf'''
 
-        ftp =  self.nm.create_template_by_name("thomasbeckers/ftp", 200, 250)
+        ftp =  self.nm.create_template_by_name("thomasbeckers/ftp", self.switch_services['x']+(len(self.list_services))*100, self.switch_services['y']+200)
         self.nm.add_file_to_node(ftp['node_id'], "/etc/network/interfaces", personal_net_config_ftp)
 
         #linking to switch services
@@ -243,9 +226,11 @@ class TopologyManager:
         self.net_config_dhcp = personal_net_config_dhcp
 
     def create_NAT(self):
-        return  self.nm.create_template_by_name("NAT",100,100)
+        return  self.nm.create_template_by_name("NAT",10,100)
 
     def create_MAIL(self, personal_net_config_mail=None):
+        self.check_switch_service()
+
         if personal_net_config_mail == None:
             personal_net_config_mail = '''# Static config
                                             auto eth0
@@ -255,9 +240,17 @@ class TopologyManager:
                                                 gateway 10.0.0.1
                                                 up echo nameserver 8.8.8.8 > /etc/resolv.conf'''
 
-        mail = self.nm.create_template_by_name("thomasbeckers/mail",300,250)
+        mail = self.nm.create_template_by_name("thomasbeckers/mail",self.switch_services['x']+(len(self.list_services))*100,self.switch_services['y']+200)
         self.nm.add_file_to_node(mail['node_id'], "/etc/network/interfaces", personal_net_config_mail)
 
         self.nm.link_nodes(self.switch_services['node_id'], mail["node_id"],
                            [0, self.get_switch_port(self.switch_services)], [0, 0])
         self.list_services.append(mail)
+
+    def check_switch_service(self):
+        if self.switch_services == None:
+            self.switch_services = self.nm.create_template_by_name("Ethernet switch", 450, 100)
+            #linking to switch_lan
+            if self.switch_lan != None:
+                self.nm.link_nodes(self.switch_services['node_id'],self.switch_lan['node_id'],
+                               [0,self.get_switch_port(self.switch_services)], [0,self.get_switch_port(self.switch_lan)])
