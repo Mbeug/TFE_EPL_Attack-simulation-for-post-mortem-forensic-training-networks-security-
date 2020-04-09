@@ -45,3 +45,20 @@ We use the GNS3 API to create and connect dynamically virtual PCs. A first examp
 ## Meeting 16/03/2020
 [Slide about progress and next sprint](https://docs.google.com/presentation/d/1zv0CAfBlcHPC_GzlQR-SX_XIXyVJKFHDvfZJD66JvFw/edit?usp=sharing)
 
+## User guide sphinx
+1. Install sphinx.
+  ```
+   pip install sphinx
+  ```
+2. Launch update of html pages.
+  ```
+    cd docs 
+    sphinx-apidoc -o . ..
+    make html
+  ```
+3. Go and click on the index.html.<br>
+  _Normally you are in the docs repository if not got to it._
+  ```
+   cd _build/html
+  ```
+  
