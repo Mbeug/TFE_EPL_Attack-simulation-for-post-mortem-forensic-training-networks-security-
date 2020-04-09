@@ -1,0 +1,7 @@
+attacker\_manager module
+========================
+
+.. automodule:: attacker_manager
+   :members:
+   :undoc-members:
+   :show-inheritance:

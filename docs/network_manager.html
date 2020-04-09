@@ -1,0 +1,928 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>network_manager module &#8212; TFE network simulation 0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test_client module" href="test_client.html" />
+    <link rel="prev" title="docker_manager module" href="docker_manager.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="test_client.html" title="test_client module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="docker_manager.html" title="docker_manager module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">TFE network simulation 0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">src</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-network_manager">
+<span id="network-manager-module"></span><h1>network_manager module<a class="headerlink" href="#module-network_manager" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="network_manager.NetworkManager">
+<em class="property">class </em><code class="sig-prename descclassname">network_manager.</code><code class="sig-name descname">NetworkManager</code><span class="sig-paren">(</span><em class="sig-param">id_project=None</em>, <em class="sig-param">id_machine=None</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to communicate with the gns3 server.</p>
+<dl class="method">
+<dt id="network_manager.NetworkManager.add_file_to_node">
+<code class="sig-name descname">add_file_to_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em>, <em class="sig-param">path</em>, <em class="sig-param">text</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.add_file_to_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method give a file to a specific node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_id</strong> – the id of the specific node</p></li>
+<li><p><strong>path</strong> – the path where the file must be put</p></li>
+<li><p><strong>text</strong> – the content file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the response of gns3 server</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>: <cite>requests.models.Response</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.check_reponse">
+<code class="sig-name descname">check_reponse</code><span class="sig-paren">(</span><em class="sig-param">response</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.check_reponse" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method check the code of  gns3 server’s response</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>response</strong> (<cite>requests.models.Response</cite>) – the response of gns3 server’s request</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>nothing or error message if the status code is different of 200 or 201</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.create_docker_template">
+<code class="sig-name descname">create_docker_template</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">image</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.create_docker_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method create a docker template</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – is the name of docker we want</p></li>
+<li><p><strong>image</strong> (<em>str</em>) – is the image of docker we want</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+<p>payload example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">payload</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;default_name_format&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="si">{name}</span><span class="s1">-</span><span class="si">{0}</span><span class="s1">&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;usage&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;symbol&#39;</span><span class="p">:</span> <span class="s1">&#39;:/symbols/docker_guest.svg&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;category&#39;</span><span class="p">:</span> <span class="s1">&#39;guest&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;start_command&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;ubuntu&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;image&#39;</span><span class="p">:</span> <span class="s1">&#39;ubuntu:latest&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;adapters&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s1">&#39;custom_adapters&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;environment&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;console_type&#39;</span><span class="p">:</span> <span class="s1">&#39;telnet&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;console_auto_start&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+            <span class="s1">&#39;console_resolution&#39;</span><span class="p">:</span> <span class="s1">&#39;1024x768&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;console_http_port&#39;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+            <span class="s1">&#39;console_http_path&#39;</span><span class="p">:</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;extra_hosts&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;extra_volumes&#39;</span><span class="p">:</span> <span class="p">[],</span>
+            <span class="s1">&#39;compute_id&#39;</span><span class="p">:</span> <span class="s1">&#39;local&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;template_id&#39;</span><span class="p">:</span> <span class="s1">&#39;e8912fbb-2e50-43a3-8328-9e748dec1f89&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;template_type&#39;</span><span class="p">:</span> <span class="s1">&#39;docker&#39;</span>
+            <span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.create_template_by_id">
+<code class="sig-name descname">create_template_by_id</code><span class="sig-paren">(</span><em class="sig-param">template_id</em>, <em class="sig-param">x=0</em>, <em class="sig-param">y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.create_template_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a specific template by its name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>template_id</strong> – the id of the template asked</p></li>
+<li><p><strong>x</strong> (<em>int</em>) – abscissa coordinate</p></li>
+<li><p><strong>y</strong> (<em>int</em>) – ordinate coordinate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the response of the template post request</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.create_template_by_name">
+<code class="sig-name descname">create_template_by_name</code><span class="sig-paren">(</span><em class="sig-param">template_name</em>, <em class="sig-param">x=0</em>, <em class="sig-param">y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.create_template_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a specific template by its name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>template_name</strong> (<em>str</em>) – the name of the template asked</p></li>
+<li><p><strong>x</strong> (<em>int</em>) – abscissa coordinate</p></li>
+<li><p><strong>y</strong> (<em>int</em>) – ordinate coordinate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the response of the template post request</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>: <cite>requests.models.Response</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.delete_drawing">
+<code class="sig-name descname">delete_drawing</code><span class="sig-paren">(</span><em class="sig-param">drawing_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_drawing" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method delete a specific drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>drawing_id</strong> – the id of specific drawing</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>delete the specific drawing</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.delete_link">
+<code class="sig-name descname">delete_link</code><span class="sig-paren">(</span><em class="sig-param">link_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method delete the specific link</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>link_id</strong> – the id of link must be deleted</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the response of the gns3 server of the delete request</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>: <cite>requests.models.Response</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.delete_node">
+<code class="sig-name descname">delete_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method make the delete request to the gns3 server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_id</strong> – The id of the node must be deleted</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>delete the specific node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.delete_snapshot">
+<code class="sig-name descname">delete_snapshot</code><span class="sig-paren">(</span><em class="sig-param">snapshot_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method delete a specific snapshot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>snapshot_id</strong> – the id of snapshot</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>delete the wondered snapshot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.duplicate_node">
+<code class="sig-name descname">duplicate_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em>, <em class="sig-param">pos</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.duplicate_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method make a request to the gns3 server to duplicate the specific node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_id</strong> – the id of the specific node</p></li>
+<li><p><strong>pos</strong> – the position where the duplicated node must be positioned</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>duplicate the specific node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_all_drawings">
+<code class="sig-name descname">get_all_drawings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_drawings" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method ask to the gsn3 server all drawings</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of all drawings in the current project</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array of dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_all_gns3vm">
+<code class="sig-name descname">get_all_gns3vm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_gns3vm" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method list all gsn3vm</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a list of the all gns3 vm</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_all_links">
+<code class="sig-name descname">get_all_links</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_links" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method list all links in the current project</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of all links</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array of dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_all_machines">
+<code class="sig-name descname">get_all_machines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_machines" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method list all machines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a list of the all machines</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_all_nodes">
+<code class="sig-name descname">get_all_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method ask the gns3 server to get the node repository</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of all nodes of the current project (<cite>selected_project</cite>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_all_project">
+<code class="sig-name descname">get_all_project</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method make a get request to the gns3 server to get all project</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a list of all projects</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_all_snapshots">
+<code class="sig-name descname">get_all_snapshots</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_snapshots" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method make a get request to the gns3 server to get all snapshots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a list of all snapshots</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_all_templates">
+<code class="sig-name descname">get_all_templates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_templates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request the gns3 server a list of all templates</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>list of all templates</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>array of dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_drawing">
+<code class="sig-name descname">get_drawing</code><span class="sig-paren">(</span><em class="sig-param">drawing_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_drawing" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method ask to the gns3 server a specific drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>drawing_id</strong> – the id of specific drawing</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the data about the specific drawing</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_link_node">
+<code class="sig-name descname">get_link_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_link_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>The method give all link of a specific node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_id</strong> – The id of the specific node</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>a list of all link</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict’s array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_one_link">
+<code class="sig-name descname">get_one_link</code><span class="sig-paren">(</span><em class="sig-param">link_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method get one specific link in the current project</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>link_id</strong> – the id of the specific link</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the response of the get method with the specific link</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_one_machine_by_id">
+<code class="sig-name descname">get_one_machine_by_id</code><span class="sig-paren">(</span><em class="sig-param">compute_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_machine_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method get one machine by id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>compute_id</strong> – the compute’s id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the object of the specific compute</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_one_machine_by_name">
+<code class="sig-name descname">get_one_machine_by_name</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_machine_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method get one machine by name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – the compute’s name</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the object of the specific compute</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_one_node_by_id">
+<code class="sig-name descname">get_one_node_by_id</code><span class="sig-paren">(</span><em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_node_by_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method get a specific node by its id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_id</strong> – The node’s id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The specific node and none if the node isn’t founded</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_one_node_by_name">
+<code class="sig-name descname">get_one_node_by_name</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_node_by_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method get a specific node by its name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> – The node’s name</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The specific node and none if the node isn’t founded</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.get_pcap_link">
+<code class="sig-name descname">get_pcap_link</code><span class="sig-paren">(</span><em class="sig-param">link_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_pcap_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stream the pcap capture file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>link_id</strong> – Link UUID</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Response from the <code class="xref py py-func docutils literal notranslate"><span class="pre">network_manager.gns3_request_get()</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.gns3_request_data">
+<code class="sig-name descname">gns3_request_data</code><span class="sig-paren">(</span><em class="sig-param">endpoint</em>, <em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request POST on the gns3 server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>endpoint</strong> (<em>str</em>) – the endpoint’s path where the request POST is to be made</p></li>
+<li><p><strong>payload</strong> (<em>str</em>) – the data in str format</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Response from the requests class of the POST request at the endpoint</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:<cite>requests.models.Response</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.gns3_request_delete">
+<code class="sig-name descname">gns3_request_delete</code><span class="sig-paren">(</span><em class="sig-param">endpoint</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request DELETE on the gns3 server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>endpoint</strong> (<em>str</em>) – the endpoint’s path where the request DELETE is to be made</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Response from the requests class of the DELETE request at the endpoint</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:<cite>requests.models.Response</cite></p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gns3_request_delete</span><span class="p">(</span><span class="s1">&#39;/projects/project_id/nodes/node_id&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Response</span> <span class="p">[</span><span class="mi">200</span><span class="p">]</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.gns3_request_get">
+<code class="sig-name descname">gns3_request_get</code><span class="sig-paren">(</span><em class="sig-param">endpoint</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request GET on the gns3 server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>endpoint</strong> (<em>str</em>) – the endpoint’s path where the request GET is to be made</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Response from the requests class of the GET request at the endpoint</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><cite>requests.models.Response</cite></p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gns3_request_get</span><span class="p">(</span><span class="s1">&#39;/gns3vm/engines&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gns3_request_get</span><span class="p">(</span><span class="s1">&#39;path/unknown&#39;</span><span class="p">)</span>
+<span class="go"># when the path is unknown by the server the response is 400</span>
+</pre></div>
+</div>
+<p>This will output:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;Response [200]&gt;
+&lt;Response [400]&gt;
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.gns3_request_post">
+<code class="sig-name descname">gns3_request_post</code><span class="sig-paren">(</span><em class="sig-param">endpoint</em>, <em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request POST on the gns3 server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>endpoint</strong> (<em>str</em>) – the endpoint’s path where the request POST is to be made</p></li>
+<li><p><strong>payload</strong> (<em>dict</em>) – the data in json format</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Response from the requests class of the POST request at the endpoint</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>: <cite>requests.models.Response</cite></p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="bp">self</span><span class="o">.</span><span class="n">gns3_request_post</span><span class="p">(</span><span class="s1">&#39;/projects/project_id/nodes&#39;</span><span class="p">,{</span><span class="s1">&#39;somedata&#39;</span><span class="p">:</span><span class="n">data</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">Response</span> <span class="p">[</span><span class="mi">200</span><span class="p">]</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.gns3_request_put">
+<code class="sig-name descname">gns3_request_put</code><span class="sig-paren">(</span><em class="sig-param">endpoint</em>, <em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Request PUT on the gns3 server.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>endpoint</strong> (<em>str</em>) – the endpoint’s path where the request PUT is to be made</p></li>
+<li><p><strong>payload</strong> (<em>dict</em>) – the data in json format</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Response from the requests class of the PUT request at the endpoint</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>:<cite>requests.models.Response</cite></p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gns3_request_put</span><span class="p">(</span><span class="s1">&#39;/projects/project_id/nodes/node_id&#39;</span><span class="p">,{</span><span class="s1">&#39;data&#39;</span><span class="p">:</span><span class="n">newData</span><span class="p">})</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Output ::</dt><dd><p>&lt;Response [200]&gt;</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.link_nodes">
+<code class="sig-name descname">link_nodes</code><span class="sig-paren">(</span><em class="sig-param">id1</em>, <em class="sig-param">id2</em>, <em class="sig-param">adapter_port1=None</em>, <em class="sig-param">adapter_port2=None</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.link_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method link two nodes together</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id1</strong> – first id node</p></li>
+<li><p><strong>id2</strong> – second id node</p></li>
+<li><p><strong>adapter_port1</strong> – first adapter port node</p></li>
+<li><p><strong>adapter_port2</strong> – second adapter port node</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the response of the post request on gns3 server</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.post_drawing">
+<code class="sig-name descname">post_drawing</code><span class="sig-paren">(</span><em class="sig-param">payload: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.post_drawing" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method send the drawing to the gns3 server</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>payload</strong> – the custom payload for the drawing</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>response from post request to the server</p>
+</dd>
+</dl>
+<p>Payload example:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;svg&quot;</span><span class="o">:</span> <span class="s1">&#39;&lt;svg height=&quot;210&quot; width=&quot;500&quot;&gt;</span>
+<span class="s1">    &lt;line x1=&quot;0&quot; y1=&quot;0&quot; x2=&quot;200&quot; y2=&quot;200&quot; style=&quot;stroke:rgb(255,0,0);stroke-width:2&quot; /&gt;&lt;/svg&gt;&#39;</span><span class="p">,</span>
+    <span class="s2">&quot;x&quot;</span><span class="o">:</span><span class="mi">10</span><span class="p">,</span>
+    <span class="s2">&quot;y&quot;</span><span class="o">:</span><span class="mi">20</span><span class="p">,</span>
+    <span class="s2">&quot;z&quot;</span><span class="o">:</span> <span class="mi">0</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.post_snapshot">
+<code class="sig-name descname">post_snapshot</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.post_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method add a snapshot to the current project.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>payload</strong> (<em>dict</em>) – data about the snapshot</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+<p>An example of payload:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;snap1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.post_template">
+<code class="sig-name descname">post_template</code><span class="sig-paren">(</span><em class="sig-param">template_object</em>, <em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.post_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method add to the project the template with the post method</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>template_object</strong> (<em>dict</em>) – the object template</p></li>
+<li><p><strong>x</strong> (<em>int</em>) – abscissa coordinate</p></li>
+<li><p><strong>y</strong> (<em>int</em>) – ordinate coordinate</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the response of the post server request</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.put_drawing">
+<code class="sig-name descname">put_drawing</code><span class="sig-paren">(</span><em class="sig-param">drawing_id</em>, <em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.put_drawing" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method update with the <cite>payload</cite> a specific drawing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>drawing_id</strong> – the id of specific drawing</p></li>
+<li><p><strong>payload</strong> – data structure containing the update of the drawing</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>update the specific drawing with the payload</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.put_node">
+<code class="sig-name descname">put_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em>, <em class="sig-param">payload: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.put_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method put the payload on the specific node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_id</strong> – The node’s id of the specific node</p></li>
+<li><p><strong>payload</strong> – the payload of the update of the specific node</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>update the node on the gns3 server</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.reload_all_node">
+<code class="sig-name descname">reload_all_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.reload_all_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>The method reload all nodes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>reload all nodes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.restore_snapshot">
+<code class="sig-name descname">restore_snapshot</code><span class="sig-paren">(</span><em class="sig-param">snapshot_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.restore_snapshot" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method ask to gns3 server to restore the specific snapshot
+:param snapshot_id: the id of the snapshot
+:return: restore the snapshot</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="network_manager.NetworkManager.selected_machine">
+<code class="sig-name descname">selected_machine</code><em class="property">: dict</em><em class="property"> = None</em><a class="headerlink" href="#network_manager.NetworkManager.selected_machine" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.set_current_machine">
+<code class="sig-name descname">set_current_machine</code><span class="sig-paren">(</span><em class="sig-param">machine=None</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.set_current_machine" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method set the current machine is using</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>machine</strong> – if is None the user must be choose the machine else this parameter specifies the machine</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>assign the value to .. self.selected_machine</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.set_current_project">
+<code class="sig-name descname">set_current_project</code><span class="sig-paren">(</span><em class="sig-param">id_project=None</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.set_current_project" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method set the current project</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id_project</strong> – the id of the project we want to work</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>set the <cite>selected_project</cite></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.start_all_nodes">
+<code class="sig-name descname">start_all_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.start_all_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>The method start all node in the current project</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>start all node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.start_capture_link">
+<code class="sig-name descname">start_capture_link</code><span class="sig-paren">(</span><em class="sig-param">link_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.start_capture_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start capture on a link instance. By default we consider it as an Ethernet link</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>link_id</strong> – Link UUID</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Response from the :func: <cite>network_manager.gns3_request_get()</cite> and start the capture packets</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.start_node">
+<code class="sig-name descname">start_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.start_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>The method start the specific node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_id</strong> – the id of the specific node</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>start the specific node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.stop_all_node">
+<code class="sig-name descname">stop_all_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.stop_all_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>The method stop all node in the current project</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>stop all nodes</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.stop_capture_link">
+<code class="sig-name descname">stop_capture_link</code><span class="sig-paren">(</span><em class="sig-param">link_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.stop_capture_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop capture on a link instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>link_id</strong> – Link UUID</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Response from the <code class="xref py py-func docutils literal notranslate"><span class="pre">network_manager.gns3_request_get()</span></code> and stop the capture packets</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="network_manager.NetworkManager.stop_node">
+<code class="sig-name descname">stop_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.stop_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>The method stop the specific node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_id</strong> – the id od the specific node</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>stop the specific node</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo_tfe.jpg" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="docker_manager.html"
+                        title="previous chapter">docker_manager module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="test_client.html"
+                        title="next chapter">test_client module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/network_manager.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="test_client.html" title="test_client module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="docker_manager.html" title="docker_manager module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">TFE network simulation 0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >src</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, UCLouvain - EPL - T. Beckers &amp; M. Beugoms.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.
+    </div>
+  </body>
+</html>

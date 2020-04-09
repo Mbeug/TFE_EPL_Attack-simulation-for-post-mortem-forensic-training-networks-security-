@@ -1,0 +1,7 @@
+network\_manager module
+=======================
+
+.. automodule:: network_manager
+   :members:
+   :undoc-members:
+   :show-inheritance:

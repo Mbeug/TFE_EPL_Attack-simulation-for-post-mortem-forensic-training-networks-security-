@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>topology_manager module &#8212; TFE network simulation 0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="test_client module" href="test_client.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="test_client.html" title="test_client module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">TFE network simulation 0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">src</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-topology_manager">
+<span id="topology-manager-module"></span><h1>topology_manager module<a class="headerlink" href="#module-topology_manager" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="topology_manager.TopologyManager">
+<em class="property">class </em><code class="sig-prename descclassname">topology_manager.</code><code class="sig-name descname">TopologyManager</code><span class="sig-paren">(</span><em class="sig-param">networkmanager=None</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to manage the topology of any network we want on the gns3 server</p>
+<dl class="method">
+<dt id="topology_manager.TopologyManager.check_switch_service">
+<code class="sig-name descname">check_switch_service</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.check_switch_service" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method check if the switch service is already created otherwise create it</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.clean">
+<code class="sig-name descname">clean</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.clean" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method delete all nodes in the project</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.create_DNS">
+<code class="sig-name descname">create_DNS</code><span class="sig-paren">(</span><em class="sig-param">personal_net_config_dns=None</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.create_DNS" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method create a dns
+:param personal_net_config_dns: customize net config of dns
+:return: the dns node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.create_FTP">
+<code class="sig-name descname">create_FTP</code><span class="sig-paren">(</span><em class="sig-param">personal_net_config_ftp=None</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.create_FTP" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method create a ftp server
+:param personal_net_config_ftp: the custom net config ftp
+:return: The ftp node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.create_HTTP">
+<code class="sig-name descname">create_HTTP</code><span class="sig-paren">(</span><em class="sig-param">personal_net_config_http=None</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.create_HTTP" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method create an HTTP server
+:param personal_net_config_http: custom net config http
+:return: http node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.create_MAIL">
+<code class="sig-name descname">create_MAIL</code><span class="sig-paren">(</span><em class="sig-param">personal_net_config_mail=None</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.create_MAIL" title="Permalink to this definition">¶</a></dt>
+<dd><p>This methode create a mail server
+:param personal_net_config_mail: custom net config mail server
+:return: mail node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.create_NAT">
+<code class="sig-name descname">create_NAT</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.create_NAT" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method create a NAT</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.create_db">
+<code class="sig-name descname">create_db</code><span class="sig-paren">(</span><em class="sig-param">personal_net_config_db=None</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.create_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method create a server database
+:param personal_net_config_db: custom personal net config for the db server
+:return: db node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.create_n_node">
+<code class="sig-name descname">create_n_node</code><span class="sig-paren">(</span><em class="sig-param">n: int</em>, <em class="sig-param">template_name: str</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.create_n_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method create n pcs (vpcs, vm, docker) link it to one switch (lan_switch)
+:param n: number of pcs
+:param template_name:The name of the template pc
+:return: add to list of pc the n new pcs</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.db_config">
+<code class="sig-name descname">db_config</code><span class="sig-paren">(</span><em class="sig-param">db</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.db_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add some congfig to the specific db server
+:param db: the specific db server</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.dns_config">
+<code class="sig-name descname">dns_config</code><span class="sig-paren">(</span><em class="sig-param">dns</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.dns_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add some config to the specific dns
+:param dns: the specific dns</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.ftp_config">
+<code class="sig-name descname">ftp_config</code><span class="sig-paren">(</span><em class="sig-param">ftp</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.ftp_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add some config to the ftp server
+:param ftp: the specific ftp server</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.get_db_nodes">
+<code class="sig-name descname">get_db_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.get_db_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>list all db servers in the project
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.get_ftp_nodes">
+<code class="sig-name descname">get_ftp_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.get_ftp_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a list of all ftp server in the project</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.get_http_nodes">
+<code class="sig-name descname">get_http_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.get_http_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>a list of all http server in the project</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.get_switch_port">
+<code class="sig-name descname">get_switch_port</code><span class="sig-paren">(</span><em class="sig-param">switch</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.get_switch_port" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the first empty port and add some if necessary ports to the specific switch
+:param switch: the specific switch
+:return: the number of the first empty port</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.http_config">
+<code class="sig-name descname">http_config</code><span class="sig-paren">(</span><em class="sig-param">http</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.http_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add some config to a specific http server
+:param http: the specific http server</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.set_net_config_dhcp">
+<code class="sig-name descname">set_net_config_dhcp</code><span class="sig-paren">(</span><em class="sig-param">new_config</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.set_net_config_dhcp" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method set basic net config dhcp
+:param new_config: str</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="topology_manager.TopologyManager.set_net_config_dhcp_on">
+<code class="sig-name descname">set_net_config_dhcp_on</code><span class="sig-paren">(</span><em class="sig-param">personal_net_config_dhcp</em><span class="sig-paren">)</span><a class="headerlink" href="#topology_manager.TopologyManager.set_net_config_dhcp_on" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method set the basic net config dhcp</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo_tfe.jpg" alt="Logo"/>
+            </a></p>
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="test_client.html"
+                        title="previous chapter">test_client module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/topology_manager.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="test_client.html" title="test_client module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">TFE network simulation 0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >src</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, UCLouvain - EPL - T. Beckers &amp; M. Beugoms.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.
+    </div>
+  </body>
+</html>
