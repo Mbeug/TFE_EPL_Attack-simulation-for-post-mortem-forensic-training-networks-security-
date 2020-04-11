@@ -1,9 +1,11 @@
 from network_manager import NetworkManager
 from topology_manager import TopologyManager
+from simulation_manager import SimulationManager
 
 if __name__ == "__main__":
     nm = NetworkManager()
     tm = TopologyManager(nm)
+    sim = SimulationManager(nm)
 
     # creation of DNS
     my_net_config_dns = '''# Static config
@@ -24,8 +26,8 @@ if __name__ == "__main__":
     tm.dns_config(DNS)
 
     # Add some node
-    tm.create_n_node(3, "Firefox")
-    tm.create_n_node(2, "Alpine")
+    tm.create_n_node(1, "Firefox")
+    tm.create_n_node(3, "thomasbeckers/alpine-curl")
     tm.create_HTTP()
     tm.create_FTP()
     tm.create_db()
@@ -44,6 +46,11 @@ if __name__ == "__main__":
     tm.db_config(db)
 
     nm.start_all_nodes()
+
+    alpines = tm.get_pc_nodes("alpine-curl")
+    # sim.mail_activity(alpines)
+    # sim.kill_mail_activity([alpines[0]])
+    sim.http_ftp_activity(alpines)
 
     flag = int(input(
         "Do you want clear(Y=1/N=0)?:"))

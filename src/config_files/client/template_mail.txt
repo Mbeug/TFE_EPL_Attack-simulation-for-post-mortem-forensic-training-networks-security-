@@ -1,0 +1,9 @@
+From: ${sender} <${sender}@mail.local>
+To: ${receiver} <${receiver}@mail.local>
+Subject: This is an email subject
+Date: ${date}
+
+Dear ${receiver},
+Welcome to this example email. What a lovely day.
+
+${sender}

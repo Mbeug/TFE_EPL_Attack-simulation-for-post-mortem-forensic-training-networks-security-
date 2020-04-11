@@ -43,9 +43,10 @@ class DockerManager:
         os.chdir(cur_dir)
         return res
 
-    def exec_to_docker(self, cont_name, cmd):
+    def exec_to_docker(self, cont_name, cmd, isdetach=False):
         container = self.client.containers.get(cont_name)
-        res = container.exec_run(cmd)
+        res = container.exec_run(cmd,detach=isdetach)
+        # print(res)
         return res
 
 # Example

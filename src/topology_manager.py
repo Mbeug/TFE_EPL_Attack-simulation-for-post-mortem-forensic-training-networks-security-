@@ -290,3 +290,11 @@ class TopologyManager:
         self.dm.copy_to_docker("./config_files/db/setup.sql", db["properties"]["container_id"])
         r =self.dm.exec_to_docker(db["properties"]["container_id"], "/bin/sh -c 'mysql -u root < setup.sql'")
         pass
+
+    def get_pc_nodes(self, name):
+        list_template = []
+        for pc in self.list_pcs:
+            if name in pc['name'] :
+                list_template.append(pc)
+
+        return list_template
