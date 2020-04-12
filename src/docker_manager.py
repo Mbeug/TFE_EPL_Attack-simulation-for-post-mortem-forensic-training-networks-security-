@@ -4,7 +4,9 @@ import tempfile
 import docker
 
 class DockerManager:
-
+    """
+    This class discuss with dockers
+    """
     def __init__(self, selected_machine):
         # Use the default socket
         if selected_machine == 'local':

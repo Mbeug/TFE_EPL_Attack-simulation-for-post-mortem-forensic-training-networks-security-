@@ -389,7 +389,7 @@ class NetworkManager:
 
         Payload example:
 
-        .. code-block :: JSON
+        .. code-block :: javascript
 
             {
                 "svg": '<svg height="210" width="500">
@@ -735,7 +735,7 @@ class NetworkManager:
 
         An example of payload:
 
-        .. code-block :: JSON
+        .. code-block :: javascript
 
             {
                 "name": "snap1"

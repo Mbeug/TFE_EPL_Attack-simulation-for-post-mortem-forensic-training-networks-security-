@@ -1,8 +1,8 @@
 # TFE EPL : Attack simulation for post mortem forensic training networks security
 
 ## Contributors
-- Maxime Beugoms
 - Thomas Beckers
+- Maxime Beugoms
 
 ## Analysis of scientific articles
 In order to organize our search and read of the documents we have added a folder **articles** divide in multiple categories : **read**, **to be read**. Some notes are taken in an Excel file online [here](https://docs.google.com/spreadsheets/d/1pjoRHB0Wb5Mv2xuWurcemfUP_-nbiGaixM4Al2_lBsQ/edit?usp=sharing) to gather relevant data and save time by avoiding whole document reading next time.
@@ -52,7 +52,7 @@ We use the GNS3 API to create and connect dynamically virtual PCs. A first examp
   ```
 2. Launch update of html pages.
   ```
-    cd docs 
+    cd docs
     sphinx-apidoc -o . ..
     make html
   ```
@@ -61,4 +61,3 @@ We use the GNS3 API to create and connect dynamically virtual PCs. A first examp
   ```
    cd _build/html
   ```
-  
