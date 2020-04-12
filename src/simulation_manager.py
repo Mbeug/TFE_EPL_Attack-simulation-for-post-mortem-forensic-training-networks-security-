@@ -1,4 +1,5 @@
 from docker_manager import DockerManager
+from network_manager import NetworkManager
 
 class SimulationManager:
     """

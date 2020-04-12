@@ -64,11 +64,11 @@ ans.summary(lfilter = lambda s_r: s_r[1].sprintf("%TCP.flags%") == "SA",prn=lamb
 
         self.nm.start_node(self.attacker_pc['node_id'])
         self.dm.exec_to_docker(self.attacker_pc["properties"]["container_id"], "mkdir scapy_scripts")
-        self.dm.copy_to_docker("./scapy_scripts/scapy_scan_ports.py",
+        self.dm.copy_to_docker("./scapy_scripts/scan_ports.py",
                                self.attacker_pc["properties"]["container_id"],
-                               "/scapy_scripts/scapy_scan_ports.py")
+                               "/scapy_scripts/scan_ports.py")
         self.dm.exec_to_docker(self.attacker_pc["properties"]["container_id"],
-                               "python3 scapy_scripts/scapy_scan_ports.py")
+                               "python3 scapy_scripts/scan_ports.py")
         pass
 
     def dos(self, ip_src, ip_dst, port):
@@ -84,11 +84,11 @@ while True:
         f.close()
         self.nm.start_node(self.attacker_pc['node_id'])
         self.dm.exec_to_docker(self.attacker_pc["properties"]["container_id"], "mkdir scapy_scripts")
-        self.dm.copy_to_docker("./scapy_scripts/scapy_dos.py",
+        self.dm.copy_to_docker("./scapy_scripts/dos.py",
                                self.attacker_pc["properties"]["container_id"],
-                               "/scapy_scripts/scapy_dos.py")
+                               "/scapy_scripts/dos.py")
         self.dm.exec_to_docker(self.attacker_pc["properties"]["container_id"],
-                               "python3 scapy_scripts/scapy_dos.py")
+                               "python3 scapy_scripts/dos.py")
         pass
 
     #TODO: modify to multiple attackers
