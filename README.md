@@ -61,3 +61,10 @@ We use the GNS3 API to create and connect dynamically virtual PCs. A first examp
   ```
    cd _build/html
   ```
+### Web version available on https://mbeug.github.io/TFE_EPL_Attack-simulation-for-post-mortem-forensic-training-networks-security-/
+
+## Meeting 31/03/2020
+[Slide about progress and next sprint](https://docs.google.com/presentation/d/1Y-5Z3Qmt6zwJHZz1rH1GJGQ2Dgv7KUslT1HYVnheXO4/edit?usp=sharing)
+
+## Meeting 14/04/2020
+[Slide about progress and next sprint](https://docs.google.com/presentation/d/1jrOd_rnwWmrYi5ZgKnXkMNQZVh3xqfNYlRZO3YWYcXU/edit?usp=sharing)
