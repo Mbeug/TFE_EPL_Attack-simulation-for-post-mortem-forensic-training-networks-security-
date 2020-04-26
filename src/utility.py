@@ -1,14 +1,16 @@
 class Utility:
 
     @staticmethod
-    def ask_user_boolean(message: str):
+    def ask_user_boolean(message: str) -> bool:
         flag = input(message + " (Y/N):").lower()
         while flag != 'y' and flag != 'n':
-            flag = input("You enter a wrong value: " + str(flag) + " . Please try again with 'y' or 'n'.").lower()
+            flag = input("You enter a wrong value: " + str(flag) + " . Please try again with 'y' or 'n':").lower()
         return flag == 'y'
 
     @staticmethod
-    def ask_user_number(choices:list):
+    def ask_user_choice(choices:list,message=None):
+        if message != None:
+            print(message)
         for idx in range(0, len(choices)):
             print("[{0}]:{1}".format(idx, choices[idx]))
 
@@ -25,3 +27,12 @@ class Utility:
                 print("You must enter a digit")
 
         return choices[user_idx]
+    @staticmethod
+    def ask_user_number(message:str) -> int:
+        value = input(message)
+        while not value.isdigit():
+            value = input(
+                "You enter a wrong value:" + str(value) + "\nPlease try again with a digit")
+
+        value_int : int = int(value)
+        return value_int

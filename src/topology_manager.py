@@ -120,12 +120,13 @@ class TopologyManager:
         else:
             return list_ports[0]
 
-    # def get_dns_adapter(self, dns):
-    #     current_adapter = dns['properties']['adapters']
-    #     dns['properties']['adapters'] = current_adapter+1
-    #     self.nm.put_node(dns['node_id'], {'properties':dns['properties']})
-    #     self.nm.put_template(dns,{'properties':dns['properties']})
-    #     return dns['properties']['adapters']-1
+    def get_dns_adapter(self, dns):
+        current_adapter = dns['properties']['adapters']
+        dns['properties']['adapters'] = current_adapter+1
+        #{'properties': {'adapters': 3, 'start_command': '', 'environment': '', 'extra_hosts': ''}, 'node_type': 'docker', 'node_id': 'b1935706-0fb5-45d9-9cc1-0d6e2b3be80b', 'compute_id': 'vm'}
+        self.nm.put_node(dns['node_id'], {'properties': {'adapters': dns['properties']['adapters'], 'start_command': '', 'environment': '', 'extra_hosts': ''}, 'node_type':dns['node_type'], 'node_id': dns['node_id'], 'compute_id': dns['compute_id']})
+        return dns['properties']['adapters']-1
+
     def clean(self):
         """
         This method delete all nodes in the project

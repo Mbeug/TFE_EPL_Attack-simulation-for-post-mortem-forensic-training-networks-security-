@@ -1,6 +1,8 @@
 import os
 import tarfile
 import tempfile
+from typing import Tuple
+
 import docker
 
 class DockerManager:
@@ -45,7 +47,7 @@ class DockerManager:
         os.chdir(cur_dir)
         return res
 
-    def exec_to_docker(self, cont_name, cmd, isdetach=False):
+    def exec_to_docker(self, cont_name, cmd, isdetach=False)->Tuple[int,bytes]:
         container = self.client.containers.get(cont_name)
         res = container.exec_run(cmd,detach=isdetach)
         # print(res)
