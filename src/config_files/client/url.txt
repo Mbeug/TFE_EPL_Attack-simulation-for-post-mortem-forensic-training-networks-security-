@@ -2,3 +2,4 @@ website.local
 website.local/database.php
 website.local/dont_exist.html
 ftp://ftp.local/write_file.py
+google.com
