@@ -1,0 +1,2 @@
+# remove files folder from language stat
+files/* linguist-vendored
