@@ -42,11 +42,23 @@ class AnalyserManager:
                 self.nm.start_capture_link(link['link_id'])
         pass
 
-    def stop_capture_btw(self, nodeA, nodeB):
+    def stop_capture_btw(self, nodeA, nodeB):#node must be next to each other
         link_list = self.get_all_link()
         for link in link_list:
             if (link['nodes'][0] == nodeA and link['nodes'][1] == nodeB) or (link['nodes'][0]==nodeB and link['nodes'][1]==nodeA):
                 self.nm.stop_capture_link(link['link_id'])
+        pass
+
+    def start_capture_node(self, node):
+        link_list = self.nm.get_link_node(node['node_id'])
+        for link in link_list:
+            self.nm.start_capture_link(link['link_id'])
+        pass
+
+    def stop_capture_node(self, node):
+        link_list = self.nm.get_link_node(node['node_id'])
+        for link in link_list:
+            self.nm.stop_capture_link(link['link_id'])
         pass
 
     def get_all_link(self):

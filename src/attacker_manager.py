@@ -3,6 +3,7 @@ import time
 from colorOutput import ColorOutput
 from topology_manager import TopologyManager
 
+from utility import Utility
 
 class AttackerManager:
     """
@@ -50,7 +51,8 @@ for ip in range({1}, {2}):
                                "/scapy_scripts/host_discovery.py")
         res = self.dm.exec_to_docker(attacker_pc["properties"]["container_id"],
                                "python3 scapy_scripts/host_discovery.py",self.ASYNC_FLAG)
-        print(ColorOutput.INFO_TAG+": result of the host discovery\n"+str(res[1].decode('utf-8')))
+        print(ColorOutput.INFO_TAG+": result of the host discovery is in the txt file in the out directory")
+        Utility.print_in_file(str(res[1].decode('utf-8')),"out_discovery_host.txt")
         pass
 
     def scan_port(self,attacker_pc, ip_dst, start_port,end_port):
@@ -78,7 +80,8 @@ ans.summary(lfilter = lambda s_r: s_r[1].sprintf("%TCP.flags%") == "SA",prn=lamb
                                "/scapy_scripts/scan_ports.py")
         res =self.dm.exec_to_docker(attacker_pc["properties"]["container_id"],
                                "python3 scapy_scripts/scan_ports.py",self.ASYNC_FLAG)
-        print(ColorOutput.INFO_TAG + ": result of the scan ports\n" + str(res[1].decode('utf-8')))
+        print("\n"+ColorOutput.INFO_TAG + ": result of the scan ports is in the out directoy")
+        Utility.print_in_file(str(res[1].decode('utf-8')), "out_scan_ports.txt")
         pass
 
     def dos(self,attacker_pc, ip_src, ip_dst, port):
@@ -99,7 +102,8 @@ while True:
                                "/scapy_scripts/dos.py")
         res = self.dm.exec_to_docker(attacker_pc["properties"]["container_id"],
                                "python3 scapy_scripts/dos.py",self.ASYNC_FLAG)
-        print(ColorOutput.INFO_TAG + ": result of the dos\n" + str(res[1].decode('utf-8')))
+        print(ColorOutput.INFO_TAG + ": result of the dos is in the out directory")
+        Utility.print_in_file(str(res[1].decode('utf-8')), "out_dos_attack.txt")
         pass
 
 
