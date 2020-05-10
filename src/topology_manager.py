@@ -283,6 +283,7 @@ class TopologyManager:
         time.sleep(2)
         self.dm.copy_to_docker("./config_files/ftp/vsftpd.conf",ftp["properties"]["container_id"],"/etc/vsftpd.conf")
         self.dm.copy_to_docker("./python_scripts/write_file.py",ftp["properties"]["container_id"],"/srv/ftp/write_file.py")
+        self.dm.copy_to_docker("./config_files/ftp/files", ftp["properties"]["container_id"],"/srv/ftp/")
         self.dm.exec_to_docker(ftp["properties"]["container_id"],"chown root:root /etc/vsftpd.conf")
         self.dm.exec_to_docker(ftp["properties"]["container_id"],"service vsftpd restart")
         #time.sleep(2)
