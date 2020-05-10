@@ -1,3 +1,5 @@
+import time
+
 from colorOutput import ColorOutput
 from topology_manager import TopologyManager
 
@@ -114,3 +116,15 @@ while True:
             self.dm.copy_to_docker("./python_scripts/write_file.py", attacker["properties"]["container_id"],
                                "pathoffile")
         pass
+
+    def dns_tunneling(self):
+        self.tm.create_n_node(1, 'thomasbeckers/iodine', 'out')
+        self.tm.create_n_node(1, 'thomasbeckers/iodine', 'in_lan')
+        list_machines = self.tm.get_pc_nodes('thomasbeckers/iodine')
+        server = list_machines[0]
+        client = list_machines[1]
+        self.nm.start_node(server['node_id'])
+        self.nm.start_node(client['node_id'])
+        print( self.dm.exec_to_docker(server["properties"]["container_id"], "iodined -f 172.16.0.1 test.com -P uclouvain", True) )
+        time.sleep(4)
+        print( self.dm.exec_to_docker(client["properties"]["container_id"], "iodine -f -r 192.168.122.30 test.com -P uclouvain", True))
