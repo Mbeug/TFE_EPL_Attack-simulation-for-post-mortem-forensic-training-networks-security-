@@ -129,6 +129,6 @@ while True:
         client = list_machines[1]
         self.nm.start_node(server['node_id'])
         self.nm.start_node(client['node_id'])
-        print( self.dm.exec_to_docker(server["properties"]["container_id"], "iodined -f 172.16.0.1 test.com -P uclouvain", True) )
+        self.dm.exec_to_docker(server["properties"]["container_id"], "iodined -f 172.16.0.1 test.com -P uclouvain", True)
         time.sleep(4)
-        print( self.dm.exec_to_docker(client["properties"]["container_id"], "iodine -f -r 192.168.122.30 test.com -P uclouvain", True))
+        self.dm.exec_to_docker(client["properties"]["container_id"], "iodine -f -r 192.168.122.30 test.com -P uclouvain", True)

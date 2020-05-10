@@ -80,6 +80,9 @@ class Client:
                 sim.http_ftp_activity(alpines)
 
             # Launch attack phase
+            if Utility.ask_user_boolean("Do you want to make a DNS tunnel?"):
+                am = AttackerManager(tm, 0, 'out') # not clean
+                am.dns_tunneling()
             attack_flag = Utility.ask_user_boolean("Do you want to make attacks?")
             if attack_flag:
                 # Add the attacker

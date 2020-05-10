@@ -120,12 +120,12 @@ class TopologyManager:
         else:
             return list_ports[0]
 
-    def get_dns_adapter(self, dns):
+    def add_dns_adapter(self, dns):
         current_adapter = dns['properties']['adapters']
         dns['properties']['adapters'] = current_adapter+1
         #{'properties': {'adapters': 3, 'start_command': '', 'environment': '', 'extra_hosts': ''}, 'node_type': 'docker', 'node_id': 'b1935706-0fb5-45d9-9cc1-0d6e2b3be80b', 'compute_id': 'vm'}
-        self.nm.put_node(dns['node_id'], {'properties': {'adapters': dns['properties']['adapters'], 'start_command': '', 'environment': '', 'extra_hosts': ''}, 'node_type':dns['node_type'], 'node_id': dns['node_id'], 'compute_id': dns['compute_id']})
-        return dns['properties']['adapters']-1
+        res = self.nm.put_node(dns['node_id'], {'properties': {'adapters': dns['properties']['adapters'], 'start_command': ''}, 'node_type':dns['node_type'], 'node_id': dns['node_id'], 'compute_id': dns['compute_id']})
+        return res.json()
 
     def clean(self):
         """
@@ -158,6 +158,7 @@ class TopologyManager:
                                                 netmask 255.255.255.0"""
 
         dns = self.nm.create_template_by_name("thomasbeckers/dns",250,100)
+        dns = self.add_dns_adapter(dns)
         self.nm.add_file_to_node(dns['node_id'], "/etc/network/interfaces", personal_net_config_dns)
 
         #linking to switch service

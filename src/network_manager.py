@@ -584,7 +584,7 @@ class NetworkManager:
         """
         response = self.gns3_request_put('/projects/'+self.selected_project['project_id']+"/nodes/"+node_id, payload)
         self.check_reponse(response)
-        pass
+        return response
 
     def delete_node(self, node_id):
         """
