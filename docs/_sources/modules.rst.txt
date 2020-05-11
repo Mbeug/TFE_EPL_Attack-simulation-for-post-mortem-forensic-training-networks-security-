@@ -9,5 +9,7 @@ src
    colorOutput
    docker_manager
    network_manager
+   simulation_manager
    test_client
    topology_manager
+   utility

@@ -1,117 +1,367 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>analyser_manager module &#8212; TFE network simulation 0 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>analyser_manager module &mdash; TFE network simulation 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="attacker_manager module" href="attacker_manager.html" />
     <link rel="prev" title="src" href="modules.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="attacker_manager.html" title="attacker_manager module"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="modules.html" title="src"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">TFE network simulation 0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">src</a> &#187;</li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TFE network simulation
+          
+
+          
+            
+            <img src="_static/logo_tfe.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">analyser_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attacker_manager.html">attacker_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorOutput.html">colorOutput module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_manager.html">docker_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network_manager.html">network_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation_manager.html">simulation_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_client.html">test_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology_manager.html">topology_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utility.html">utility module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TFE network simulation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">src</a> &raquo;</li>
+        
+      <li>analyser_manager module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/analyser_manager.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="module-analyser_manager">
 <span id="analyser-manager-module"></span><h1>analyser_manager module<a class="headerlink" href="#module-analyser_manager" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="analyser_manager.AnalyserManager">
-<em class="property">class </em><code class="sig-prename descclassname">analyser_manager.</code><code class="sig-name descname">AnalyserManager</code><a class="headerlink" href="#analyser_manager.AnalyserManager" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">analyser_manager.</code><code class="sig-name descname">AnalyserManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">networkManager</span><span class="p">:</span> <span class="n"><a class="reference internal" href="network_manager.html#network_manager.NetworkManager" title="network_manager.NetworkManager">network_manager.NetworkManager</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is used to manage the analysis of the network</p>
+<dl class="py method">
+<dt id="analyser_manager.AnalyserManager.get_all_link">
+<code class="sig-name descname">get_all_link</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager.get_all_link" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method allows you to retrieve all the links of the topology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A list of all links</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="analyser_manager.AnalyserManager.start">
+<code class="sig-name descname">start</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager.start" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method call the <code class="xref py py-meth docutils literal notranslate"><span class="pre">start_node()</span></code> method in <a class="reference internal" href="network_manager.html#module-network_manager" title="network_manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">network_manager</span></code></a>. It start a specific node of our topology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> – The specific node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="analyser_manager.AnalyserManager.start_all_capture">
+<code class="sig-name descname">start_all_capture</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager.start_all_capture" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method apply on all links of our network the <code class="xref py py-meth docutils literal notranslate"><span class="pre">start_capture_link()</span></code> method of the <a class="reference internal" href="network_manager.html#module-network_manager" title="network_manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">network_manager</span></code></a>.
+It start the capture on all links.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The pcap file is stored in the capture directory of the GNS3 project</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="analyser_manager.AnalyserManager.start_capture_btw">
+<code class="sig-name descname">start_capture_btw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nodeA</span></em>, <em class="sig-param"><span class="n">nodeB</span></em><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager.start_capture_btw" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method start a capture with the <code class="xref py py-meth docutils literal notranslate"><span class="pre">start_capture_link()</span></code> method of the <a class="reference internal" href="network_manager.html#module-network_manager" title="network_manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">network_manager</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nodeA</strong> – One of the nodes</p></li>
+<li><p><strong>nodeB</strong> – One of the nodes</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The pcap file is stored in the capture directory of the GNS3 project</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>nodeA and nodeB must be next to each other</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="analyser_manager.AnalyserManager.start_capture_node">
+<code class="sig-name descname">start_capture_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager.start_capture_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method start a capture on all links of one specific node with <code class="xref py py-meth docutils literal notranslate"><span class="pre">start_capture_link()</span></code> in <a class="reference internal" href="network_manager.html#module-network_manager" title="network_manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">network_manager</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> – The specific node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The pcap file is stored in the capture directory of the GNS3 project</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="analyser_manager.AnalyserManager.start_nodes">
+<code class="sig-name descname">start_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager.start_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method call the <code class="xref py py-meth docutils literal notranslate"><span class="pre">start_all_nodes()</span></code> method in <a class="reference internal" href="network_manager.html#module-network_manager" title="network_manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">network_manager</span></code></a>. It start all nodes of our topology.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="analyser_manager.AnalyserManager.stop">
+<code class="sig-name descname">stop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method call the <code class="xref py py-meth docutils literal notranslate"><span class="pre">stop_node()</span></code> method in <a class="reference internal" href="network_manager.html#module-network_manager" title="network_manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">network_manager</span></code></a>. It stop the specific node of our topology.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> – The specific node</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="analyser_manager.AnalyserManager.stop_all_capture">
+<code class="sig-name descname">stop_all_capture</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager.stop_all_capture" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method apply on all links of our network the <code class="xref py py-meth docutils literal notranslate"><span class="pre">stop_capture_link()</span></code> method of the <a class="reference internal" href="network_manager.html#module-network_manager" title="network_manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">network_manager</span></code></a>.
+It stop the capture on all links.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The pcap file is stored in the capture directory of the GNS3 project</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="analyser_manager.AnalyserManager.stop_capture_btw">
+<code class="sig-name descname">stop_capture_btw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nodeA</span></em>, <em class="sig-param"><span class="n">nodeB</span></em><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager.stop_capture_btw" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method stop a capture with the <code class="xref py py-meth docutils literal notranslate"><span class="pre">stop_capture_link()</span></code> method of the <a class="reference internal" href="network_manager.html#module-network_manager" title="network_manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">network_manager</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nodeA</strong> – One of the nodes</p></li>
+<li><p><strong>nodeB</strong> – One of the nodes</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The pcap file is stored in the capture directory of the GNS3 project</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>nodeA and nodeB must be next to each other</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="analyser_manager.AnalyserManager.stop_capture_node">
+<code class="sig-name descname">stop_capture_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node</span></em><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager.stop_capture_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method stop a capture on all links of one specific node with <code class="xref py py-meth docutils literal notranslate"><span class="pre">stop_capture_link()</span></code> in <a class="reference internal" href="network_manager.html#module-network_manager" title="network_manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">network_manager</span></code></a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> – The specific node</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The pcap file is stored in the capture directory of the GNS3 project</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="analyser_manager.AnalyserManager.stop_nodes">
+<code class="sig-name descname">stop_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#analyser_manager.AnalyserManager.stop_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method call the <code class="xref py py-meth docutils literal notranslate"><span class="pre">stop_all_nodes()</span></code> method in <a class="reference internal" href="network_manager.html#module-network_manager" title="network_manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">network_manager</span></code></a>. It stop all nodes of our topology.</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
 
 
+           </div>
+           
           </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="attacker_manager.html" class="btn btn-neutral float-right" title="attacker_manager module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral float-left" title="src" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, UCLouvain - EPL - T. Beckers &amp; M. Beugoms
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/logo_tfe.jpg" alt="Logo"/>
-            </a></p>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="modules.html"
-                        title="previous chapter">src</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="attacker_manager.html"
-                        title="next chapter">attacker_manager module</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/analyser_manager.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="attacker_manager.html" title="attacker_manager module"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="modules.html" title="src"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">TFE network simulation 0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="modules.html" >src</a> &#187;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, UCLouvain - EPL - T. Beckers &amp; M. Beugoms.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

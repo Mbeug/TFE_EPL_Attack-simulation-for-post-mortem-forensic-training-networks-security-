@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>test_client module &mdash; TFE network simulation 0 documentation</title>
+  <title>utility module &mdash; TFE network simulation 0 documentation</title>
   
 
   
@@ -35,8 +35,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="topology_manager module" href="topology_manager.html" />
-    <link rel="prev" title="simulation_manager module" href="simulation_manager.html" /> 
+    <link rel="prev" title="topology_manager module" href="topology_manager.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -92,9 +91,9 @@
 <li class="toctree-l2"><a class="reference internal" href="docker_manager.html">docker_manager module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="network_manager.html">network_manager module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="simulation_manager.html">simulation_manager module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">test_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_client.html">test_client module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="topology_manager.html">topology_manager module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utility.html">utility module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">utility module</a></li>
 </ul>
 </li>
 </ul>
@@ -144,13 +143,13 @@
         
           <li><a href="modules.html">src</a> &raquo;</li>
         
-      <li>test_client module</li>
+      <li>utility module</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/test_client.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/utility.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -163,19 +162,81 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-test_client">
-<span id="test-client-module"></span><h1>test_client module<a class="headerlink" href="#module-test_client" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-utility">
+<span id="utility-module"></span><h1>utility module<a class="headerlink" href="#module-utility" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
-<dt id="test_client.Client">
-<em class="property">class </em><code class="sig-prename descclassname">test_client.</code><code class="sig-name descname">Client</code><a class="headerlink" href="#test_client.Client" title="Permalink to this definition">¶</a></dt>
+<dt id="utility.Utility">
+<em class="property">class </em><code class="sig-prename descclassname">utility.</code><code class="sig-name descname">Utility</code><a class="headerlink" href="#utility.Utility" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>This class is an example of all of our work, we named it Client</p>
+<p>This is an auxiliary class to help us to interact with a user and some other tools</p>
+<dl class="py method">
+<dt id="utility.Utility.ask_user_boolean">
+<em class="property">static </em><code class="sig-name descname">ask_user_boolean</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; bool<a class="headerlink" href="#utility.Utility.ask_user_boolean" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method ask to the user a question with a boolean answer
+:param message: The question to the user
+:return: The answer of the user
+:rtype: bool</p>
 </dd></dl>
 
-<dl class="py function">
-<dt id="test_client.analyze">
-<code class="sig-prename descclassname">test_client.</code><code class="sig-name descname">analyze</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nm</span></em>, <em class="sig-param"><span class="n">DNS</span></em>, <em class="sig-param"><span class="n">HTTP</span></em>, <em class="sig-param"><span class="n">FTP</span></em>, <em class="sig-param"><span class="n">MAIL</span></em><span class="sig-paren">)</span><a class="headerlink" href="#test_client.analyze" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="py method">
+<dt id="utility.Utility.ask_user_choice">
+<em class="property">static </em><code class="sig-name descname">ask_user_choice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">choices</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">message</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utility.Utility.ask_user_choice" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method asks the user to make a choice based on a list <em>choices</em>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>choices</strong> – The possible choices</p></li>
+<li><p><strong>message</strong> – A question</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The choice of user</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>Type of element in the choices list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utility.Utility.ask_user_number">
+<em class="property">static </em><code class="sig-name descname">ask_user_number</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#utility.Utility.ask_user_number" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method ask to the user a question with a response expected a number answer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>message</strong> – The question</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A number to answer to the question</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="utility.Utility.print_in_file">
+<em class="property">static </em><code class="sig-name descname">print_in_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#utility.Utility.print_in_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method allows to print a specific input in a specific file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – The message, input must be write in the file</p></li>
+<li><p><strong>filename</strong> – The name of the file</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Write the input in the specific file</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The location of the file is in the out directory of this python project</p>
+</div>
+</dd></dl>
+
+</dd></dl>
 
 </div>
 
@@ -187,10 +248,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="topology_manager.html" class="btn btn-neutral float-right" title="topology_manager module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="simulation_manager.html" class="btn btn-neutral float-left" title="simulation_manager module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="topology_manager.html" class="btn btn-neutral float-left" title="topology_manager module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -1,59 +1,178 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>network_manager module &#8212; TFE network simulation 0 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>network_manager module &mdash; TFE network simulation 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="test_client module" href="test_client.html" />
+    <link rel="next" title="simulation_manager module" href="simulation_manager.html" />
     <link rel="prev" title="docker_manager module" href="docker_manager.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="test_client.html" title="test_client module"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="docker_manager.html" title="docker_manager module"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">TFE network simulation 0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">src</a> &#187;</li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TFE network simulation
+          
+
+          
+            
+            <img src="_static/logo_tfe.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="analyser_manager.html">analyser_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attacker_manager.html">attacker_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorOutput.html">colorOutput module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_manager.html">docker_manager module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">network_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation_manager.html">simulation_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_client.html">test_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology_manager.html">topology_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utility.html">utility module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TFE network simulation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">src</a> &raquo;</li>
+        
+      <li>network_manager module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/network_manager.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="module-network_manager">
 <span id="network-manager-module"></span><h1>network_manager module<a class="headerlink" href="#module-network_manager" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="network_manager.NetworkManager">
-<em class="property">class </em><code class="sig-prename descclassname">network_manager.</code><code class="sig-name descname">NetworkManager</code><span class="sig-paren">(</span><em class="sig-param">id_project=None</em>, <em class="sig-param">id_machine=None</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">network_manager.</code><code class="sig-name descname">NetworkManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_project</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">id_machine</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class to communicate with the gns3 server.</p>
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.add_file_to_node">
-<code class="sig-name descname">add_file_to_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em>, <em class="sig-param">path</em>, <em class="sig-param">text</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.add_file_to_node" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_file_to_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_id</span></em>, <em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">text</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.add_file_to_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method give a file to a specific node.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -72,9 +191,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.check_reponse">
-<code class="sig-name descname">check_reponse</code><span class="sig-paren">(</span><em class="sig-param">response</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.check_reponse" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">check_reponse</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">response</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.check_reponse" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method check the code of  gns3 server’s response</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -86,9 +205,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.create_docker_template">
-<code class="sig-name descname">create_docker_template</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">image</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.create_docker_template" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_docker_template</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em>, <em class="sig-param"><span class="n">image</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.create_docker_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>Method create a docker template</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -127,9 +246,9 @@
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.create_template_by_id">
-<code class="sig-name descname">create_template_by_id</code><span class="sig-paren">(</span><em class="sig-param">template_id</em>, <em class="sig-param">x=0</em>, <em class="sig-param">y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.create_template_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_template_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">template_id</span></em>, <em class="sig-param"><span class="n">x</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.create_template_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a specific template by its name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -148,9 +267,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.create_template_by_name">
-<code class="sig-name descname">create_template_by_name</code><span class="sig-paren">(</span><em class="sig-param">template_name</em>, <em class="sig-param">x=0</em>, <em class="sig-param">y=0</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.create_template_by_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">create_template_by_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">template_name</span></em>, <em class="sig-param"><span class="n">x</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">y</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.create_template_by_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a specific template by its name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -169,9 +288,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.delete_drawing">
-<code class="sig-name descname">delete_drawing</code><span class="sig-paren">(</span><em class="sig-param">drawing_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_drawing" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delete_drawing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">drawing_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_drawing" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method delete a specific drawing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -183,9 +302,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.delete_link">
-<code class="sig-name descname">delete_link</code><span class="sig-paren">(</span><em class="sig-param">link_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delete_link</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">link_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method delete the specific link</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -200,9 +319,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.delete_node">
-<code class="sig-name descname">delete_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_node" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delete_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method make the delete request to the gns3 server</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -214,9 +333,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.delete_snapshot">
-<code class="sig-name descname">delete_snapshot</code><span class="sig-paren">(</span><em class="sig-param">snapshot_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">delete_snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">snapshot_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.delete_snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method delete a specific snapshot.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -228,9 +347,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.duplicate_node">
-<code class="sig-name descname">duplicate_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em>, <em class="sig-param">pos</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.duplicate_node" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">duplicate_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_id</span></em>, <em class="sig-param"><span class="n">pos</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.duplicate_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method make a request to the gns3 server to duplicate the specific node</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -245,7 +364,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_all_drawings">
 <code class="sig-name descname">get_all_drawings</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_drawings" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method ask to the gsn3 server all drawings</p>
@@ -259,7 +378,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_all_gns3vm">
 <code class="sig-name descname">get_all_gns3vm</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_gns3vm" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method list all gsn3vm</p>
@@ -273,7 +392,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_all_links">
 <code class="sig-name descname">get_all_links</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_links" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method list all links in the current project</p>
@@ -287,7 +406,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_all_machines">
 <code class="sig-name descname">get_all_machines</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_machines" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method list all machines</p>
@@ -301,7 +420,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_all_nodes">
 <code class="sig-name descname">get_all_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_nodes" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method ask the gns3 server to get the node repository</p>
@@ -312,7 +431,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_all_project">
 <code class="sig-name descname">get_all_project</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_project" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method make a get request to the gns3 server to get all project</p>
@@ -323,7 +442,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_all_snapshots">
 <code class="sig-name descname">get_all_snapshots</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_snapshots" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method make a get request to the gns3 server to get all snapshots.</p>
@@ -334,7 +453,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_all_templates">
 <code class="sig-name descname">get_all_templates</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_all_templates" title="Permalink to this definition">¶</a></dt>
 <dd><p>Request the gns3 server a list of all templates</p>
@@ -348,9 +467,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_drawing">
-<code class="sig-name descname">get_drawing</code><span class="sig-paren">(</span><em class="sig-param">drawing_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_drawing" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_drawing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">drawing_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_drawing" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method ask to the gns3 server a specific drawing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -365,9 +484,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_link_node">
-<code class="sig-name descname">get_link_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_link_node" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_link_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_link_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>The method give all link of a specific node.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -382,9 +501,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_one_link">
-<code class="sig-name descname">get_one_link</code><span class="sig-paren">(</span><em class="sig-param">link_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_one_link</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">link_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method get one specific link in the current project</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -399,9 +518,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_one_machine_by_id">
-<code class="sig-name descname">get_one_machine_by_id</code><span class="sig-paren">(</span><em class="sig-param">compute_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_machine_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_one_machine_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">compute_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_machine_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method get one machine by id</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -416,9 +535,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_one_machine_by_name">
-<code class="sig-name descname">get_one_machine_by_name</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_machine_by_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_one_machine_by_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_machine_by_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method get one machine by name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -433,9 +552,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_one_node_by_id">
-<code class="sig-name descname">get_one_node_by_id</code><span class="sig-paren">(</span><em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_node_by_id" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_one_node_by_id</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_node_by_id" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method get a specific node by its id</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -450,9 +569,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_one_node_by_name">
-<code class="sig-name descname">get_one_node_by_name</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_node_by_name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_one_node_by_name</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_one_node_by_name" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method get a specific node by its name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -467,9 +586,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.get_pcap_link">
-<code class="sig-name descname">get_pcap_link</code><span class="sig-paren">(</span><em class="sig-param">link_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_pcap_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_pcap_link</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">link_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.get_pcap_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stream the pcap capture file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -481,9 +600,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.gns3_request_data">
-<code class="sig-name descname">gns3_request_data</code><span class="sig-paren">(</span><em class="sig-param">endpoint</em>, <em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_data" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">gns3_request_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">endpoint</span></em>, <em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Request POST on the gns3 server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -501,9 +620,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.gns3_request_delete">
-<code class="sig-name descname">gns3_request_delete</code><span class="sig-paren">(</span><em class="sig-param">endpoint</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_delete" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">gns3_request_delete</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">endpoint</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_delete" title="Permalink to this definition">¶</a></dt>
 <dd><p>Request DELETE on the gns3 server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -526,9 +645,9 @@
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.gns3_request_get">
-<code class="sig-name descname">gns3_request_get</code><span class="sig-paren">(</span><em class="sig-param">endpoint</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_get" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">gns3_request_get</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">endpoint</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Request GET on the gns3 server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -554,9 +673,9 @@
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.gns3_request_post">
-<code class="sig-name descname">gns3_request_post</code><span class="sig-paren">(</span><em class="sig-param">endpoint</em>, <em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_post" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">gns3_request_post</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">endpoint</span></em>, <em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_post" title="Permalink to this definition">¶</a></dt>
 <dd><p>Request POST on the gns3 server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -582,9 +701,9 @@
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.gns3_request_put">
-<code class="sig-name descname">gns3_request_put</code><span class="sig-paren">(</span><em class="sig-param">endpoint</em>, <em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_put" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">gns3_request_put</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">endpoint</span></em>, <em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.gns3_request_put" title="Permalink to this definition">¶</a></dt>
 <dd><p>Request PUT on the gns3 server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -610,9 +729,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.link_nodes">
-<code class="sig-name descname">link_nodes</code><span class="sig-paren">(</span><em class="sig-param">id1</em>, <em class="sig-param">id2</em>, <em class="sig-param">adapter_port1=None</em>, <em class="sig-param">adapter_port2=None</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.link_nodes" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">link_nodes</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id1</span></em>, <em class="sig-param"><span class="n">id2</span></em>, <em class="sig-param"><span class="n">adapter_port1</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">adapter_port2</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.link_nodes" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method link two nodes together</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -632,9 +751,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.post_drawing">
-<code class="sig-name descname">post_drawing</code><span class="sig-paren">(</span><em class="sig-param">payload: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.post_drawing" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">post_drawing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">payload</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.post_drawing" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method send the drawing to the gns3 server</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -656,9 +775,9 @@
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.post_snapshot">
-<code class="sig-name descname">post_snapshot</code><span class="sig-paren">(</span><em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.post_snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">post_snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.post_snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method add a snapshot to the current project.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -676,9 +795,9 @@
 </div>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.post_template">
-<code class="sig-name descname">post_template</code><span class="sig-paren">(</span><em class="sig-param">template_object</em>, <em class="sig-param">x</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.post_template" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">post_template</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">template_object</span></em>, <em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">y</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.post_template" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method add to the project the template with the post method</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -697,9 +816,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.put_drawing">
-<code class="sig-name descname">put_drawing</code><span class="sig-paren">(</span><em class="sig-param">drawing_id</em>, <em class="sig-param">payload</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.put_drawing" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">put_drawing</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">drawing_id</span></em>, <em class="sig-param"><span class="n">payload</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.put_drawing" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method update with the <cite>payload</cite> a specific drawing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -714,9 +833,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.put_node">
-<code class="sig-name descname">put_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em>, <em class="sig-param">payload: dict</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.put_node" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">put_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_id</span></em>, <em class="sig-param"><span class="n">payload</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.put_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method put the payload on the specific node</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -731,7 +850,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.reload_all_node">
 <code class="sig-name descname">reload_all_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.reload_all_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>The method reload all nodes</p>
@@ -742,22 +861,22 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.restore_snapshot">
-<code class="sig-name descname">restore_snapshot</code><span class="sig-paren">(</span><em class="sig-param">snapshot_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.restore_snapshot" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">restore_snapshot</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">snapshot_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.restore_snapshot" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method ask to gns3 server to restore the specific snapshot
 :param snapshot_id: the id of the snapshot
 :return: restore the snapshot</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="py attribute">
 <dt id="network_manager.NetworkManager.selected_machine">
 <code class="sig-name descname">selected_machine</code><em class="property">: dict</em><em class="property"> = None</em><a class="headerlink" href="#network_manager.NetworkManager.selected_machine" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.set_current_machine">
-<code class="sig-name descname">set_current_machine</code><span class="sig-paren">(</span><em class="sig-param">machine=None</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.set_current_machine" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_current_machine</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">machine</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.set_current_machine" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method set the current machine is using</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -769,9 +888,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.set_current_project">
-<code class="sig-name descname">set_current_project</code><span class="sig-paren">(</span><em class="sig-param">id_project=None</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.set_current_project" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">set_current_project</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id_project</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.set_current_project" title="Permalink to this definition">¶</a></dt>
 <dd><p>This method set the current project</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -783,7 +902,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.start_all_nodes">
 <code class="sig-name descname">start_all_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.start_all_nodes" title="Permalink to this definition">¶</a></dt>
 <dd><p>The method start all node in the current project</p>
@@ -794,9 +913,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.start_capture_link">
-<code class="sig-name descname">start_capture_link</code><span class="sig-paren">(</span><em class="sig-param">link_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.start_capture_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">start_capture_link</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">link_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.start_capture_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Start capture on a link instance. By default we consider it as an Ethernet link</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -808,9 +927,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.start_node">
-<code class="sig-name descname">start_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.start_node" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">start_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.start_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>The method start the specific node</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -822,7 +941,7 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.stop_all_node">
 <code class="sig-name descname">stop_all_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.stop_all_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>The method stop all node in the current project</p>
@@ -833,9 +952,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.stop_capture_link">
-<code class="sig-name descname">stop_capture_link</code><span class="sig-paren">(</span><em class="sig-param">link_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.stop_capture_link" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">stop_capture_link</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">link_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.stop_capture_link" title="Permalink to this definition">¶</a></dt>
 <dd><p>Stop capture on a link instance.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -847,9 +966,9 @@
 </dl>
 </dd></dl>
 
-<dl class="method">
+<dl class="py method">
 <dt id="network_manager.NetworkManager.stop_node">
-<code class="sig-name descname">stop_node</code><span class="sig-paren">(</span><em class="sig-param">node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.stop_node" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">stop_node</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_id</span></em><span class="sig-paren">)</span><a class="headerlink" href="#network_manager.NetworkManager.stop_node" title="Permalink to this definition">¶</a></dt>
 <dd><p>The method stop the specific node</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -866,63 +985,52 @@
 </div>
 
 
+           </div>
+           
           </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="simulation_manager.html" class="btn btn-neutral float-right" title="simulation_manager module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="docker_manager.html" class="btn btn-neutral float-left" title="docker_manager module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, UCLouvain - EPL - T. Beckers &amp; M. Beugoms
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/logo_tfe.jpg" alt="Logo"/>
-            </a></p>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="docker_manager.html"
-                        title="previous chapter">docker_manager module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="test_client.html"
-                        title="next chapter">test_client module</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/network_manager.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="test_client.html" title="test_client module"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="docker_manager.html" title="docker_manager module"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">TFE network simulation 0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="modules.html" >src</a> &#187;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, UCLouvain - EPL - T. Beckers &amp; M. Beugoms.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>

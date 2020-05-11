@@ -1,0 +1,7 @@
+simulation\_manager module
+==========================
+
+.. automodule:: simulation_manager
+   :members:
+   :undoc-members:
+   :show-inheritance:

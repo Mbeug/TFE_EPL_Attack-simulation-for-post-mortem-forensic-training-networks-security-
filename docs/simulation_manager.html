@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>simulation_manager module &mdash; TFE network simulation 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="test_client module" href="test_client.html" />
+    <link rel="prev" title="network_manager module" href="network_manager.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TFE network simulation
+          
+
+          
+            
+            <img src="_static/logo_tfe.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="analyser_manager.html">analyser_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="attacker_manager.html">attacker_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorOutput.html">colorOutput module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_manager.html">docker_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network_manager.html">network_manager module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">simulation_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_client.html">test_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology_manager.html">topology_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utility.html">utility module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TFE network simulation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">src</a> &raquo;</li>
+        
+      <li>simulation_manager module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/simulation_manager.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-simulation_manager">
+<span id="simulation-manager-module"></span><h1>simulation_manager module<a class="headerlink" href="#module-simulation_manager" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="simulation_manager.SimulationManager">
+<em class="property">class </em><code class="sig-prename descclassname">simulation_manager.</code><code class="sig-name descname">SimulationManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">networkmanager</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#simulation_manager.SimulationManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to manage the simulation of traffic for clients:</p>
+<dl class="py method">
+<dt id="simulation_manager.SimulationManager.http_ftp_activity">
+<code class="sig-name descname">http_ftp_activity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">list_pc</span></em>, <em class="sig-param"><span class="n">t_min</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">t_max</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">path_url</span><span class="o">=</span><span class="default_value">'./config_files/client/'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#simulation_manager.SimulationManager.http_ftp_activity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start http/ftp activity on machines with curl</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list_pc</strong> (<em>list</em>) – list of targeted machines</p></li>
+<li><p><strong>t_min</strong> (<em>int</em>) – min time between each request</p></li>
+<li><p><strong>t_max</strong> (<em>int</em>) – max time between each request</p></li>
+<li><p><strong>path_url</strong> (<em>str</em>) – path to the file containing urls</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="simulation_manager.SimulationManager.kill_http_ftp_activity">
+<code class="sig-name descname">kill_http_ftp_activity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">list_pc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#simulation_manager.SimulationManager.kill_http_ftp_activity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop http/ftp activity on machines with curl</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>list_pc</strong> (<em>list</em>) – list of targeted machines</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="simulation_manager.SimulationManager.kill_mail_activity">
+<code class="sig-name descname">kill_mail_activity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">list_pc</span></em><span class="sig-paren">)</span><a class="headerlink" href="#simulation_manager.SimulationManager.kill_mail_activity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stop mail activity on machines</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>list_pc</strong> (<em>list</em>) – list of targeted machines</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="simulation_manager.SimulationManager.mail_activity">
+<code class="sig-name descname">mail_activity</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">list_pc</span></em>, <em class="sig-param"><span class="n">t_min</span><span class="o">=</span><span class="default_value">2</span></em>, <em class="sig-param"><span class="n">t_max</span><span class="o">=</span><span class="default_value">5</span></em>, <em class="sig-param"><span class="n">sender</span><span class="o">=</span><span class="default_value">'bob'</span></em>, <em class="sig-param"><span class="n">passwd</span><span class="o">=</span><span class="default_value">'alice'</span></em>, <em class="sig-param"><span class="n">receiver</span><span class="o">=</span><span class="default_value">'bob'</span></em><span class="sig-paren">)</span><a class="headerlink" href="#simulation_manager.SimulationManager.mail_activity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Start mail activity on machines with curl</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list_pc</strong> (<em>list</em>) – list of targeted machines</p></li>
+<li><p><strong>t_min</strong> (<em>int</em>) – min time between each request</p></li>
+<li><p><strong>t_max</strong> (<em>int</em>) – max time between each request</p></li>
+<li><p><strong>sender</strong> (<em>str</em>) – sender of mails</p></li>
+<li><p><strong>passwd</strong> (<em>str</em>) – password of the sender</p></li>
+<li><p><strong>receiver</strong> (<em>str</em>) – recipient of the mail</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="test_client.html" class="btn btn-neutral float-right" title="test_client module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="network_manager.html" class="btn btn-neutral float-left" title="network_manager module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, UCLouvain - EPL - T. Beckers &amp; M. Beugoms
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

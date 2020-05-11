@@ -1,117 +1,330 @@
 
-<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="utf-8" />
-    <title>attacker_manager module &#8212; TFE network simulation 0 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>attacker_manager module &mdash; TFE network simulation 0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
     
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/language_data.js"></script>
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
     
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="colorOutput module" href="colorOutput.html" />
     <link rel="prev" title="analyser_manager module" href="analyser_manager.html" /> 
-  </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="colorOutput.html" title="colorOutput module"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="analyser_manager.html" title="analyser_manager module"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">TFE network simulation 0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">src</a> &#187;</li> 
-      </ul>
-    </div>  
+</head>
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> TFE network simulation
+          
+
+          
+            
+            <img src="_static/logo_tfe.jpg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="analyser_manager.html">analyser_manager module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">attacker_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorOutput.html">colorOutput module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_manager.html">docker_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="network_manager.html">network_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="simulation_manager.html">simulation_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_client.html">test_client module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="topology_manager.html">topology_manager module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utility.html">utility module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">TFE network simulation</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">src</a> &raquo;</li>
+        
+      <li>attacker_manager module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/attacker_manager.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   <div class="section" id="module-attacker_manager">
 <span id="attacker-manager-module"></span><h1>attacker_manager module<a class="headerlink" href="#module-attacker_manager" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+<dl class="py class">
 <dt id="attacker_manager.AttackerManager">
-<em class="property">class </em><code class="sig-prename descclassname">attacker_manager.</code><code class="sig-name descname">AttackerManager</code><a class="headerlink" href="#attacker_manager.AttackerManager" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">attacker_manager.</code><code class="sig-name descname">AttackerManager</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">topology_manager</span><span class="p">:</span> <span class="n"><a class="reference internal" href="topology_manager.html#topology_manager.TopologyManager" title="topology_manager.TopologyManager">topology_manager.TopologyManager</a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#attacker_manager.AttackerManager" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to manage attackers in the network. This class calls some methods of the <a class="reference internal" href="docker_manager.html#module-docker_manager" title="docker_manager"><code class="xref py py-class docutils literal notranslate"><span class="pre">docker_manager</span></code></a> class</p>
+<dl class="py method">
+<dt id="attacker_manager.AttackerManager.attacker_config">
+<code class="sig-name descname">attacker_config</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#attacker_manager.AttackerManager.attacker_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method configure attackers pcs</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="attacker_manager.AttackerManager.create_attackers">
+<code class="sig-name descname">create_attackers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">nb_attackers</span></em>, <em class="sig-param"><span class="n">flag_position</span></em><span class="sig-paren">)</span><a class="headerlink" href="#attacker_manager.AttackerManager.create_attackers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method creating nb_attackers at the flag_position</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nb_attackers</strong> – The number of attackers we want to create</p></li>
+<li><p><strong>flag_position</strong> – The position( ‘out’ or ‘in_service’ or ‘in_lan’) where we want to put attackers</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Add to the list of attackers the new attackers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="attacker_manager.AttackerManager.dns_tunneling">
+<code class="sig-name descname">dns_tunneling</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#attacker_manager.AttackerManager.dns_tunneling" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method launch a dns tunneling</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="attacker_manager.AttackerManager.dos">
+<code class="sig-name descname">dos</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attacker_pc</span></em>, <em class="sig-param"><span class="n">ip_src</span></em>, <em class="sig-param"><span class="n">ip_dst</span></em>, <em class="sig-param"><span class="n">port</span></em><span class="sig-paren">)</span><a class="headerlink" href="#attacker_manager.AttackerManager.dos" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method launch a Dos attack, it represents the execution of what a bot in a botnet could do.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attacker_pc</strong> – The bot</p></li>
+<li><p><strong>ip_src</strong> – The ip bot</p></li>
+<li><p><strong>ip_dst</strong> – The target of the attack</p></li>
+<li><p><strong>port</strong> – The port number</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Write in the out_dos_attack.txt the result of the execution</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="attacker_manager.AttackerManager.get_attackers">
+<em class="property">static </em><code class="sig-name descname">get_attackers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">list_pcs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#attacker_manager.AttackerManager.get_attackers" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method allows you to have the list of attackers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>list_pcs</strong> – The list of pcs present in the topology</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the list of all attackers present in the topology</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="attacker_manager.AttackerManager.host_discovery">
+<code class="sig-name descname">host_discovery</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attacker_pc</span></em>, <em class="sig-param"><span class="n">ip_dst</span></em>, <em class="sig-param"><span class="n">start_range</span></em>, <em class="sig-param"><span class="n">end_range</span></em><span class="sig-paren">)</span><a class="headerlink" href="#attacker_manager.AttackerManager.host_discovery" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method launch the host discovery with some parameters</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attacker_pc</strong> – which attacker launch this attack</p></li>
+<li><p><strong>ip_dst</strong> – The mask of the ip address</p></li>
+<li><p><strong>start_range</strong> – The number of the port on which the discovery is to begin</p></li>
+<li><p><strong>end_range</strong> – The number of the port on which the discovery is to be completed</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Write in the out_discovery_host.txt the result of the execution</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The file is stored in out directory</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="attacker_manager.AttackerManager.scan_port">
+<code class="sig-name descname">scan_port</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attacker_pc</span></em>, <em class="sig-param"><span class="n">ip_dst</span></em>, <em class="sig-param"><span class="n">start_port</span></em>, <em class="sig-param"><span class="n">end_port</span></em><span class="sig-paren">)</span><a class="headerlink" href="#attacker_manager.AttackerManager.scan_port" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method launch a scan of ports on the pc at a specific ip address with the pc attacker.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>attacker_pc</strong> – The pc attacker</p></li>
+<li><p><strong>ip_dst</strong> – The target of the scan</p></li>
+<li><p><strong>start_port</strong> – The starting port number</p></li>
+<li><p><strong>end_port</strong> – The ending port number</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Write in the out_scan_ports.txt the result of the execution</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </div>
 
 
+           </div>
+           
           </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="colorOutput.html" class="btn btn-neutral float-right" title="colorOutput module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="analyser_manager.html" class="btn btn-neutral float-left" title="analyser_manager module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, UCLouvain - EPL - T. Beckers &amp; M. Beugoms
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-            <p class="logo"><a href="index.html">
-              <img class="logo" src="_static/logo_tfe.jpg" alt="Logo"/>
-            </a></p>
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="analyser_manager.html"
-                        title="previous chapter">analyser_manager module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="colorOutput.html"
-                        title="next chapter">colorOutput module</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/attacker_manager.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</div>
-<script>$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="colorOutput.html" title="colorOutput module"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="analyser_manager.html" title="analyser_manager module"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">TFE network simulation 0 documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="modules.html" >src</a> &#187;</li> 
-      </ul>
-    </div>
-    <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, UCLouvain - EPL - T. Beckers &amp; M. Beugoms.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.
-    </div>
-  </body>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
 </html>
