@@ -4,6 +4,7 @@ import os
 import requests
 
 from colorOutput import ColorOutput
+from utility import Utility
 
 home_dir = os.path.expanduser("~")
 config_server = configparser.ConfigParser()
@@ -220,11 +221,8 @@ class NetworkManager:
 
         if len(found_name) == 0:
             print(ColorOutput.ERROR_TAG + ': No occurrence of name "' + template_name + '"')
-            flag = int(input("If is a docker template, do you want to add '"+template_name+"' to the project templates (Y=1/N=0)?:"))
-            while(flag != 1 and flag != 0):
-                flag = int(input("Your input isn't supported, try again:"))
 
-            if flag :
+            if Utility.ask_user_boolean("If is a docker template, do you want to add '"+template_name+"' to the project templates?") :
                 template_object = self.create_docker_template(template_name,template_name)
             else :
                 exit(1)
@@ -364,6 +362,15 @@ class NetworkManager:
 
             return self.list_machines[int(input("choose the machine\n"))]
         else:
+            for id_machine in range(len(self.list_machines)):
+
+                  if machine == self.list_machines[id_machine]['compute_id']:
+                      return self.list_machines[id_machine]
+
+            for id_vm in range(len(self.list_machines)):
+                if machine == self.list_gns3vm[id_vm]['compute_id']:
+                    return self.list_gns3vm[id_vm]
+
             return machine
         pass
 
@@ -766,9 +773,6 @@ class NetworkManager:
         response = self.gns3_request_post('/projects/' + self.selected_project['project_id'] +'/snapshots/'+ snapshot_id +'/restore',{})
         self.check_reponse(response)
         return response
-
-    # ENDPOINT OTHER (server, symbol)
-    # TODO
 
     ####################################################################################################################
     #                                            METHOD AUXILIARY                                                      #

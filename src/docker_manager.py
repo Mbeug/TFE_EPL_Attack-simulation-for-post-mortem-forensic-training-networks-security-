@@ -10,6 +10,7 @@ class DockerManager:
     This class discuss with dockers
 
     Example::
+
         from docker_manager import DockerManager
         dm = DockerManager('vm')
         cont_name = dm.select_container()

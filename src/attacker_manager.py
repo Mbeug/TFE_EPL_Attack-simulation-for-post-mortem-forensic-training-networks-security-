@@ -5,26 +5,46 @@ from topology_manager import TopologyManager
 
 from utility import Utility
 
+
 class AttackerManager:
     """
-
+    Class to manage attackers in the network. This class calls some methods of the :py:class:`docker_manager` class
     """
-    ASYNC_FLAG = False
 
-    def __init__(self,topology_manager:TopologyManager, nb_attacker:int, flag_position:str):
+    def __init__(self, topology_manager: TopologyManager):
         self.tm = topology_manager
         self.nm = self.tm.nm
         self.dm = self.tm.dm
-        self.create_attackers(nb_attacker,flag_position)
         self.list_attackers = self.get_attackers(self.tm.list_pcs)
 
         pass
 
     def create_attackers(self, nb_attackers, flag_position):
+        """
+        Method creating nb_attackers at the flag_position
+
+        :param nb_attackers: The number of attackers we want to create
+        :param flag_position: The position( 'out' or 'in_service' or 'in_lan') where we want to put attackers
+        :return: Add to the list of attackers the new attackers
+
+        """
         self.tm.create_n_node(nb_attackers, 'thomasbeckers/alpine-scapy', flag_position)
-        self.list_attackers = self.get_attackers(self.tm.list_pcs)
+        self.list_attackers=self.get_attackers(self.tm.list_pcs)
+        print(ColorOutput.INFO_TAG+": {0} attacker(s) added at the position '{1}'.".format(nb_attackers,flag_position))
         pass
-    def host_discovery(self, attacker_pc,ip_dst,start_range,end_range):
+
+    def host_discovery(self, attacker_pc, ip_dst, start_range, end_range):
+        """
+        This method launch the host discovery with some parameters
+
+        :param attacker_pc: which attacker launch this attack
+        :param ip_dst: The mask of the ip address
+        :param start_range: The number of the port on which the discovery is to begin
+        :param end_range: The number of the port on which the discovery is to be completed
+        :return: Write in the out_discovery_host.txt the result of the execution
+
+        .. note:: The file is stored in out directory
+        """
         script = '''
 from scapy.all import *
 
@@ -41,21 +61,30 @@ for ip in range({1}, {2}):
         '''
 
         f = open("./scapy_scripts/host_discovery.py", "w")
-        f.write(script.format(ip_dst,start_range,end_range))
+        f.write(script.format(ip_dst, start_range, end_range))
         f.close()
 
         self.nm.start_node(attacker_pc['node_id'])
-        self.dm.exec_to_docker(attacker_pc["properties"]["container_id"],"mkdir scapy_scripts")
+        self.dm.exec_to_docker(attacker_pc["properties"]["container_id"], "mkdir scapy_scripts")
         self.dm.copy_to_docker("./scapy_scripts/host_discovery.py",
                                attacker_pc["properties"]["container_id"],
                                "/scapy_scripts/host_discovery.py")
         res = self.dm.exec_to_docker(attacker_pc["properties"]["container_id"],
-                               "python3 scapy_scripts/host_discovery.py",self.ASYNC_FLAG)
-        print(ColorOutput.INFO_TAG+": result of the host discovery is in the txt file in the out directory")
-        Utility.print_in_file(str(res[1].decode('utf-8')),"out_discovery_host.txt")
+                                     "python3 scapy_scripts/host_discovery.py")
+        print(ColorOutput.INFO_TAG + ": result of the host discovery is in the txt file in the out directory")
+        Utility.print_in_file(str(res[1].decode('utf-8')), "out_discovery_host.txt")
         pass
 
-    def scan_port(self,attacker_pc, ip_dst, start_port,end_port):
+    def scan_port(self, attacker_pc, ip_dst, start_port, end_port):
+        """
+        This method launch a scan of ports on the pc at a specific ip address with the pc attacker.
+
+        :param attacker_pc: The pc attacker
+        :param ip_dst: The target of the scan
+        :param start_port: The starting port number
+        :param end_port: The ending port number
+        :return: Write in the out_scan_ports.txt the result of the execution
+        """
         script = '''
 from scapy.all import *
 
@@ -67,10 +96,9 @@ ans, unans = sr( IP(dst="{0}")/TCP(flags="S", dport=({1},{2})) )
 print('Ports open:')
 ans.summary(lfilter = lambda s_r: s_r[1].sprintf("%TCP.flags%") == "SA",prn=lambda s_r:s_r[1].sprintf("%TCP.sport% is open"))
 
-
         '''
         f = open("./scapy_scripts/scan_ports.py", "w")
-        f.write(script.format(ip_dst,start_port,end_port))
+        f.write(script.format(ip_dst, start_port, end_port))
         f.close()
 
         self.nm.start_node(attacker_pc['node_id'])
@@ -78,13 +106,22 @@ ans.summary(lfilter = lambda s_r: s_r[1].sprintf("%TCP.flags%") == "SA",prn=lamb
         self.dm.copy_to_docker("./scapy_scripts/scan_ports.py",
                                attacker_pc["properties"]["container_id"],
                                "/scapy_scripts/scan_ports.py")
-        res =self.dm.exec_to_docker(attacker_pc["properties"]["container_id"],
-                               "python3 scapy_scripts/scan_ports.py",self.ASYNC_FLAG)
-        print("\n"+ColorOutput.INFO_TAG + ": result of the scan ports is in the out directoy")
+        res = self.dm.exec_to_docker(attacker_pc["properties"]["container_id"],
+                                     "python3 scapy_scripts/scan_ports.py")
+        print("\n" + ColorOutput.INFO_TAG + ": result of the scan ports is in the out directory")
         Utility.print_in_file(str(res[1].decode('utf-8')), "out_scan_ports.txt")
         pass
 
-    def dos(self,attacker_pc, ip_src, ip_dst, port):
+    def dos(self, attacker_pc, ip_src, ip_dst, port):
+        """
+        This method launch a Dos attack, it represents the execution of what a bot in a botnet could do.
+
+        :param attacker_pc: The bot
+        :param ip_src: The ip bot
+        :param ip_dst: The target of the attack
+        :param port: The port number
+        :return: Write in the out_dos_attack.txt the result of the execution
+        """
         script = '''
 from scapy.all import *
 
@@ -101,27 +138,40 @@ while True:
                                attacker_pc["properties"]["container_id"],
                                "/scapy_scripts/dos.py")
         res = self.dm.exec_to_docker(attacker_pc["properties"]["container_id"],
-                               "python3 scapy_scripts/dos.py",self.ASYNC_FLAG)
+                                     "python3 scapy_scripts/dos.py")
         print(ColorOutput.INFO_TAG + ": result of the dos is in the out directory")
         Utility.print_in_file(str(res[1].decode('utf-8')), "out_dos_attack.txt")
         pass
 
+    @staticmethod
+    def get_attackers(list_pcs):
+        """
+        This method allows you to have the list of attackers.
 
-    def get_attackers(self, list_pcs):
+        :param list_pcs: The list of pcs present in the topology
+        :return: the list of all attackers present in the topology
+        """
         list_attackers = []
-        for pc in list_pcs :
+        for pc in list_pcs:
             if 'thomasbeckers/alpine-scapy' in pc['name']:
                 list_attackers.append(pc)
-        print(ColorOutput.INFO_TAG +': attacker pc not found')
+        print(ColorOutput.INFO_TAG + ': attacker pc not found')
         return list_attackers
 
     def attacker_config(self):
+        """
+        This method configure attackers pcs
+
+        """
         for attacker in self.list_attackers:
             self.dm.copy_to_docker("./python_scripts/write_file.py", attacker["properties"]["container_id"],
-                               "pathoffile")
+                                   "pathoffile")
         pass
 
     def dns_tunneling(self):
+        """
+        This method launch a dns tunneling
+        """
         self.tm.create_n_node(1, 'thomasbeckers/iodine', 'out')
         self.tm.create_n_node(1, 'thomasbeckers/iodine', 'in_lan')
         list_machines = self.tm.get_pc_nodes('thomasbeckers/iodine')
@@ -129,6 +179,8 @@ while True:
         client = list_machines[1]
         self.nm.start_node(server['node_id'])
         self.nm.start_node(client['node_id'])
-        self.dm.exec_to_docker(server["properties"]["container_id"], "iodined -f 172.16.0.1 test.com -P uclouvain", True)
+        self.dm.exec_to_docker(server["properties"]["container_id"], "iodined -f 172.16.0.1 test.com -P uclouvain",
+                               True)
         time.sleep(4)
-        self.dm.exec_to_docker(client["properties"]["container_id"], "iodine -f -r 192.168.122.30 test.com -P uclouvain", True)
+        self.dm.exec_to_docker(client["properties"]["container_id"],
+                               "iodine -f -r 192.168.122.30 test.com -P uclouvain", True)
