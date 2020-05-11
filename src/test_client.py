@@ -106,7 +106,7 @@ class Client:
                 alpines = tm.get_pc_nodes("alpine-curl")
                 print("Starting mail activity ...")
                 sim.mail_activity(alpines)
-                print("Starting FTP activity")
+                print("Starting FTP activity ...")
                 sim.http_ftp_activity(alpines)
 
             if anm is None:
@@ -173,15 +173,17 @@ class Client:
 
             # Stop the activity simulation
             if alpines is not None:
-                print("Stopping activity ...")
-                nm.start_all_nodes()
-                sim.kill_mail_activity(alpines)
-                sim.kill_http_ftp_activity(alpines)
+                if Utility.ask_user_boolean("Do you want to stop the activity simulation?"):
+                    print("Stopping activity ...")
+                    nm.start_all_nodes()
+                    sim.kill_mail_activity(alpines)
+                    sim.kill_http_ftp_activity(alpines)
 
 
             # Stop the capture
             if anm is not None:
-                anm.stop_all_capture()
+                if Utility.ask_user_boolean("Do you want to stop the capture?"):
+                    anm.stop_all_capture()
 
 
         except Exception:
@@ -200,5 +202,5 @@ class Client:
 
             # Clean the project
             if nm is not None and tm is not None:
-                if Utility.ask_user_boolean("Do you want to close all?"):
+                if Utility.ask_user_boolean("Do you want to clean all?"):
                     tm.clean()
