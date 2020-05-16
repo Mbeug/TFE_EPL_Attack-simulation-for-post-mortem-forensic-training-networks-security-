@@ -68,3 +68,9 @@ We use the GNS3 API to create and connect dynamically virtual PCs. A first examp
 
 ## Meeting 14/04/2020
 [Slide about progress and next sprint](https://docs.google.com/presentation/d/1jrOd_rnwWmrYi5ZgKnXkMNQZVh3xqfNYlRZO3YWYcXU/edit?usp=sharing)
+
+## Meeting 28/04/2020
+[Slide about progress and next sprint](https://docs.google.com/presentation/d/14TLEmYQ1V5d6NXI9s79MeNo5eY8DxXOE-aiguU4WIQE/edit?usp=sharing)
+
+## Meeting 12/05/2020
+[Slide about progress and next sprint](https://docs.google.com/presentation/d/1LMt46wIDFHNxUFqmKIWm0rZr8GxMX0AZ7sjldfIwuWA/edit?usp=sharing)
