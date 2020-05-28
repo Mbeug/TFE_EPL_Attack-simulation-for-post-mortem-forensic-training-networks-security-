@@ -24,7 +24,7 @@ class DockerManager:
         if selected_machine == 'local':
             self.client = docker.from_env()
         elif selected_machine == 'vm':
-            self.client = docker.DockerClient(base_url = 'tcp://192.168.56.104:2375')
+            self.client = docker.DockerClient(base_url = 'tcp://192.168.56.110:2375')
 
     def select_container(self):
         """

@@ -1,6 +1,7 @@
+import threading
 import time
 
-from colorOutput import ColorOutput
+from color_output import ColorOutput
 from topology_manager import TopologyManager
 
 from utility import Utility
@@ -16,7 +17,7 @@ class AttackerManager:
         self.nm = self.tm.nm
         self.dm = self.tm.dm
         self.list_attackers = self.get_attackers(self.tm.list_pcs)
-
+        self.threads_list =[]
         pass
 
     def create_attackers(self, nb_attackers, flag_position):
@@ -29,7 +30,12 @@ class AttackerManager:
 
         """
         self.tm.create_n_node(nb_attackers, 'thomasbeckers/alpine-scapy', flag_position)
-        self.list_attackers=self.get_attackers(self.tm.list_pcs)
+        list_pcs = self.tm.list_pcs
+        list_services = self.tm.list_services
+        list = list_pcs + list_services
+        self.list_attackers=self.get_attackers(list)
+
+
         print(ColorOutput.INFO_TAG+": {0} attacker(s) added at the position '{1}'.".format(nb_attackers,flag_position))
         pass
 
@@ -184,3 +190,30 @@ while True:
         time.sleep(4)
         self.dm.exec_to_docker(client["properties"]["container_id"],
                                "iodine -f -r 192.168.122.30 test.com -P uclouvain", True)
+
+
+
+    def launch_attack_host_discovery(self, param):
+        thread_host = threading.Thread(name="Thread host discovering out", target=self.host_discovery, args=param)
+        thread_host.start()
+        self.threads_list.append(thread_host)
+        pass
+
+    def launch_attack_scan_ports(self, param):
+        thread_scan_port = threading.Thread(name="Thread Scan port inner", target=self.scan_port,args=param)
+        thread_scan_port.start()
+        self.threads_list.append(thread_scan_port)
+        pass
+
+    def launch_attack_dos(self, param):
+        thread_dos = threading.Thread(name="Thread Dos attack out", target=self.dos,args=param)
+        thread_dos.start()
+        self.threads_list.append(thread_dos)
+        pass
+
+    def stop_threads_attacks(self):
+        print(ColorOutput.INFO_TAG + ": Waiting threads for attacks processes ...")
+        for thread in self.threads_list:
+            print(ColorOutput.INFO_TAG + ": We are waiting end of "+ thread.getName())
+            thread.join()
+            print(ColorOutput.INFO_TAG+ ": is closed")

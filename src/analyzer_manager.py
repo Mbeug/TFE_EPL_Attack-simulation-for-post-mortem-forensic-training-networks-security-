@@ -1,7 +1,7 @@
 from network_manager import NetworkManager
 
 
-class AnalyserManager:
+class AnalyzerManager:
     """
         This class is used to manage the analysis of the network
     """

@@ -1,6 +1,6 @@
 import time
 
-from colorOutput import ColorOutput
+from color_output import ColorOutput
 from docker_manager import DockerManager
 from network_manager import NetworkManager
 

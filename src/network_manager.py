@@ -3,7 +3,7 @@ import os
 
 import requests
 
-from colorOutput import ColorOutput
+from color_output import ColorOutput
 from utility import Utility
 
 home_dir = os.path.expanduser("~")
@@ -220,7 +220,7 @@ class NetworkManager:
                 template_object = list_templates[i]
 
         if len(found_name) == 0:
-            print(ColorOutput.ERROR_TAG + ': No occurrence of name "' + template_name + '"')
+            print(ColorOutput.INFO_TAG + ': No occurrence of name "' + template_name + '"')
 
             if Utility.ask_user_boolean("If is a docker template, do you want to add '"+template_name+"' to the project templates?") :
                 template_object = self.create_docker_template(template_name,template_name)

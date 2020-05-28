@@ -1,7 +1,7 @@
 import os
 import sys
 
-from colorOutput import ColorOutput
+from color_output import ColorOutput
 
 
 class Utility:
@@ -63,7 +63,7 @@ class Utility:
         value = input(message)
         while not value.isdigit():
             value = input(
-                "You enter a wrong value: {}\nPlease try again with a digit".format(str(value)))
+                "You enter a wrong value: {}\nPlease try again with a digit: ".format(str(value)))
 
         value_int: int = int(value)
         return value_int
