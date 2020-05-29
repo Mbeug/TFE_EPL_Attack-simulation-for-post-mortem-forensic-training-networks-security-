@@ -338,7 +338,7 @@ class TopologyManager:
 
     def create_MAIL(self, personal_net_config_mail=None):
         """
-        This methode create a mail server
+        This method create a mail server
         :param personal_net_config_mail: custom net config mail server
         :return: mail node
         """

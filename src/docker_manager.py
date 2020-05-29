@@ -46,7 +46,7 @@ class DockerManager:
         Copy a file or folder to a specific docker container
 
         :param src: path of the file to copy
-        :param cont_name: name of the container (for exemple short_id)
+        :param cont_name: name of the container (for example short_id)
         :param dst:  destination path in the container
         :type src: str
         :type dst: str
@@ -75,7 +75,7 @@ class DockerManager:
         """
         Execute a command inside a container
 
-        :param cont_name: name of the container (for exemple short_id)
+        :param cont_name: name of the container (for example short_id)
         :param cmd: command to execute
         :param isdetach: True if we want to detach
         :type cont_name: str

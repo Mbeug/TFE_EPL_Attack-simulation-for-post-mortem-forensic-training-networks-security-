@@ -194,24 +194,45 @@ while True:
 
 
     def launch_attack_host_discovery(self, param):
+        """
+        This method launch a thread with the host discovery attack
+
+        :param param: It's necessary parameters for the :py:meth:`~self.host_discovery` method
+
+        """
         thread_host = threading.Thread(name="Thread host discovering out", target=self.host_discovery, args=param)
         thread_host.start()
         self.threads_list.append(thread_host)
         pass
 
     def launch_attack_scan_ports(self, param):
+        """
+        This method launch a thread with the scan ports attack
+
+        :param param: It's necessary parameters for the :py:meth:`~self.scan_port` method
+
+        """
         thread_scan_port = threading.Thread(name="Thread Scan port inner", target=self.scan_port,args=param)
         thread_scan_port.start()
         self.threads_list.append(thread_scan_port)
         pass
 
     def launch_attack_dos(self, param):
+        """
+        This method launch a thread with the dos attack
+
+        :param param: It's necessary parameters for the :py:meth:`~self.dos` method
+
+        """
         thread_dos = threading.Thread(name="Thread Dos attack out", target=self.dos,args=param)
         thread_dos.start()
         self.threads_list.append(thread_dos)
         pass
 
     def stop_threads_attacks(self):
+        """
+        This method join all thread launched
+        """
         print(ColorOutput.INFO_TAG + ": Waiting threads for attacks processes ...")
         for thread in self.threads_list:
             print(ColorOutput.INFO_TAG + ": We are waiting end of "+ thread.getName())
