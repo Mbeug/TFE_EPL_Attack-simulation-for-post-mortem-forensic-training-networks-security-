@@ -75,6 +75,7 @@ for ip in range({1}, {2}):
         self.dm.copy_to_docker("./scapy_scripts/host_discovery.py",
                                attacker_pc["properties"]["container_id"],
                                "/scapy_scripts/host_discovery.py")
+        time.sleep(4)
         res = self.dm.exec_to_docker(attacker_pc["properties"]["container_id"],
                                      "python3 scapy_scripts/host_discovery.py")
         print(ColorOutput.INFO_TAG + ": result of the host discovery is in the txt file in the out directory")
@@ -112,6 +113,7 @@ ans.summary(lfilter = lambda s_r: s_r[1].sprintf("%TCP.flags%") == "SA",prn=lamb
         self.dm.copy_to_docker("./scapy_scripts/scan_ports.py",
                                attacker_pc["properties"]["container_id"],
                                "/scapy_scripts/scan_ports.py")
+        time.sleep(4)
         res = self.dm.exec_to_docker(attacker_pc["properties"]["container_id"],
                                      "python3 scapy_scripts/scan_ports.py")
         print("\n" + ColorOutput.INFO_TAG + ": result of the scan ports is in the out directory")
@@ -143,6 +145,7 @@ while True:
         self.dm.copy_to_docker("./scapy_scripts/dos.py",
                                attacker_pc["properties"]["container_id"],
                                "/scapy_scripts/dos.py")
+        time.sleep(4)
         res = self.dm.exec_to_docker(attacker_pc["properties"]["container_id"],
                                      "python3 scapy_scripts/dos.py")
         print(ColorOutput.INFO_TAG + ": result of the dos is in the out directory")

@@ -20,6 +20,7 @@ class Client:
             tm: TopologyManager = TopologyManager(nm, False)
             sim: SimulationManager = SimulationManager(nm)
             anm: AnalyzerManager = None
+            am: AttackerManager = None
             threads_attack = []
 
             if Utility.ask_user_boolean("Do you want to build the topology?"):
@@ -104,14 +105,13 @@ class Client:
             # Launch attack phase
             attack_flag = Utility.ask_user_boolean("Do you want to make attacks?")
             if attack_flag:
+                am = AttackerManager(tm)
                 if Utility.ask_user_boolean("Do you want to make a DNS tunnel?"):
-                    am = AttackerManager(tm)
                     am.dns_tunneling()
 
                 # Add the attacker
                 flag_am_position = ['out', 'in_service', 'in_lan']
                 position = Utility.ask_user_choice(flag_am_position, "Where do you want to put attackers?")
-                am = AttackerManager(tm)
                 am.create_attackers(Utility.ask_user_number("How many attackers do you want?"), position)
                 attacker = am.list_attackers[0]
                 while attack_flag :
@@ -119,50 +119,19 @@ class Client:
                     attack = Utility.ask_user_choice(['Host discovery', 'Scan ports', 'Dos attack'])
                     if attack == 'Host discovery':
                         if position == flag_am_position[0]:
-                            # thread_host = threading.Thread(name="Thread host discovering out", target=am.host_discovery,
-                            #                                args=[attacker, '192.168.122.', 0, 100])
-                            # thread_host.start()
-                            # threads_attack.append(thread_host)
-                            # am.host_discovery(attacker, '192.168.122.', 0, 100)
                             am.launch_attack_host_discovery([attacker, '192.168.122.', 0, 100])
                         else:
-                            # thread_host = threading.Thread(name="Thread host discovering inner",
-                            #                                target=am.host_discovery,
-                            #                                args=[attacker, '10.0.0.', 0, 100])
-                            # thread_host.start()
-                            # threads_attack.append(thread_host)
-                            # am.host_discovery(attacker, '10.0.0.', 0, 100)
                             am.launch_attack_host_discovery([attacker, '10.0.0.', 0, 100])
                     elif attack == 'Scan ports':
                         if position == flag_am_position[0]:
-                            # thread_scan_port = threading.Thread(name="Thread Scan port out", target=am.scan_port,
-                            #                                     args=[attacker, '192.168.122.10', 1, 1024])
-                            # thread_scan_port.start()
-                            # threads_attack.append(thread_scan_port)
-                            # am.scan_port(attacker, '192.168.122.10', 1, 1024)
                             am.launch_attack_scan_ports([attacker, '192.168.122.10', 1, 1024])
                         else:
-                            # thread_scan_port = threading.Thread(name="Thread Scan port inner", target=am.scan_port,
-                            #                                     args=[attacker, '192.168.122.10', 1, 1024])
-                            # thread_scan_port.start()
-                            # threads_attack.append(thread_scan_port)
-                            # am.scan_port(attacker, '192.168.122.10', 1, 1024)
-                            am.launch_attack_scan_ports([attacker, '192.168.122.10', 1, 1024])
+                            am.launch_attack_scan_ports([attacker, '10.0.0.14', 1, 1024])
                     elif attack == 'Dos attack':
                         if position == flag_am_position[0]:
-                            # thread_dos = threading.Thread(name="Thread Dos attack out", target=am.dos,
-                            #                               args=[attacker, '192.168.122.30', '192.168.122.10', 80])
-                            # thread_dos.start()
-                            # threads_attack.append(thread_dos)
-                            # am.dos(attacker, '192.168.122.30', '192.168.122.10', 80)
                             am.launch_attack_dos([attacker, '192.168.122.30', '192.168.122.10', 80])
                         else:
-                            # thread_dos = threading.Thread(name="Thread Dos attack in", target=am.dos,
-                            #                               args=[attacker, '192.168.122.30', '192.168.122.10', 80])
-                            # thread_dos.start()
-                            # threads_attack.append(thread_dos)
-                            # am.dos(attacker, '192.168.122.30', '192.168.122.10', 80)
-                            am.launch_attack_dos([attacker, '192.168.122.30', '192.168.122.10', 80])
+                            am.launch_attack_dos([attacker, '192.168.122.30', '10.0.0.14', 80])
 
                     attack_flag = Utility.ask_user_boolean("Do you want to make an other attack?")
 
@@ -189,11 +158,13 @@ class Client:
         finally:
 
             # Waiting the end of threads for attacks
-            am.stop_threads_attacks()
+            if am is not None:
+                am.stop_threads_attacks()
 
             # Stopping node
-            print(ColorOutput.INFO_TAG+": Stopping node ...")
-            nm.stop_all_node()
+            if nm is not None :
+                print(ColorOutput.INFO_TAG+": Stopping node ...")
+                nm.stop_all_node()
 
             # Clean the project
             if nm is not None and tm is not None:
