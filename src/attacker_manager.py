@@ -164,7 +164,6 @@ while True:
         for pc in list_pcs:
             if 'thomasbeckers/alpine-scapy' in pc['name']:
                 list_attackers.append(pc)
-        print(ColorOutput.INFO_TAG + ': attacker pc not found')
         return list_attackers
 
     def attacker_config(self):

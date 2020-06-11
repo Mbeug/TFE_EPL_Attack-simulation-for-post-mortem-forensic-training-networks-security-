@@ -112,7 +112,7 @@ class Client:
                 # Add the attacker
                 flag_am_position = ['out', 'in_service', 'in_lan']
                 position = Utility.ask_user_choice(flag_am_position, "Where do you want to put attackers?")
-                am.create_attackers(Utility.ask_user_number("How many attackers do you want?"), position)
+                am.create_attackers(1, position)
                 attacker = am.list_attackers[0]
                 while attack_flag :
                     # Ask which attack made
@@ -163,8 +163,9 @@ class Client:
 
             # Stopping node
             if nm is not None :
-                print(ColorOutput.INFO_TAG+": Stopping node ...")
-                nm.stop_all_node()
+                if Utility.ask_user_boolean("Do you want to stop all node?"):
+                    print(ColorOutput.INFO_TAG+": Stopping node ...")
+                    nm.stop_all_node()
 
             # Clean the project
             if nm is not None and tm is not None:
