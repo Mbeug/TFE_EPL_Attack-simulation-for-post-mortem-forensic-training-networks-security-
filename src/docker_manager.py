@@ -19,12 +19,12 @@ class DockerManager:
         print(res.output)
     """
 
-    def __init__(self, selected_machine):
+    def __init__(self, selected_machine, host = '192.168.56.110', port = '2375'):
         # Use the default socket
         if selected_machine == 'local':
             self.client = docker.from_env()
         elif selected_machine == 'vm':
-            self.client = docker.DockerClient(base_url = 'tcp://192.168.56.110:2375')
+            self.client = docker.DockerClient(base_url = 'tcp://{host}:{port}'.format(host=host, port=port))
 
     def select_container(self):
         """
